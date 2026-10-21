@@ -1,4 +1,4 @@
-# M09 · Diseñar pruebas de impuestos
+# M9 · Cazadores de errores: prueba los impuestos
 
 Aquí tu producto es una suite `unittest`: las funciones de impuestos son soporte docente, no una solución que debas reescribir.
 
@@ -10,9 +10,9 @@ Aquí tu producto es una suite `unittest`: las funciones de impuestos son soport
 
 ## Ruta rápida
 
-1. Edita solo `practicas/m09_pruebas_impuesto.py`.
+1. Edita solo `practicas/modulo-09/m09_pruebas_impuesto.py`.
 2. No edites `soporte_m09_impuestos.py` ni `test_m09_pruebas_impuesto.py`: son docentes.
-3. Ejecuta desde la raíz: `python3 -m unittest discover -s practicas -p 'test_m09_pruebas_impuesto.py' -v`.
+3. Ejecuta desde la raíz: `python3 -m unittest discover -s practicas/modulo-09 -p 'test_m09_pruebas_impuesto.py' -v`.
 
 Sustituye los cuatro `TODO` por pruebas significativas para `calcular_subtotal` y `aplicar_iva`. Importa sus APIs públicas directamente. Cubre ambas APIs: cantidad (incluido cero), redondeo y negativos separados para subtotal; tasa por defecto y explícita, redondeo y negativos separados para IVA. Puedes usar `subTest` y varias aserciones por método; no omitas ni declares fallos esperados.
 

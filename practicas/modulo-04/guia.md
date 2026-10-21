@@ -1,6 +1,6 @@
-# M04 · Recibo de envío
+# M4 · Entrega especial: crea tu recibo de envío
 
-Construirás dos funciones que calculan un envío y presentan su recibo. El archivo que editas es `practicas/m04_recibo_envio.py`; no escribas un programa que pida datos ni imprimas resultados.
+Construirás dos funciones que calculan un envío y presentan su recibo. El archivo que editas es `practicas/modulo-04/m04_recibo_envio.py`; no escribas un programa que pida datos ni imprimas resultados.
 
 ## Objetivo
 
@@ -9,11 +9,11 @@ Aplicar parámetros predeterminados, argumentos posicionales y por nombre, `retu
 ## Antes del laboratorio
 
 1. Repasa [definir funciones](https://statick88.github.io/Course_of_python/content/modulo-04/01-definir-funciones.html), [parámetros y argumentos](https://statick88.github.io/Course_of_python/content/modulo-04/02-parametros-argumentos.html) y [return](https://statick88.github.io/Course_of_python/content/modulo-04/03-return.html).
-2. Abre únicamente `practicas/m04_recibo_envio.py` y lee los TODO numerados.
+2. Abre únicamente `practicas/modulo-04/m04_recibo_envio.py` y lee los TODO numerados.
 3. Ejecuta la prueba inicial:
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_m04_recibo_envio.py' -v
+python3 -m unittest discover -s practicas/modulo-04 -p 'test_m04_recibo_envio.py' -v
 ```
 
 Al principio es normal que falle: el archivo contiene plantillas deliberadamente incompletas. Ese fallo no demuestra dominio; solo confirma el punto de partida.

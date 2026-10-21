@@ -16,10 +16,10 @@ Consulta el [catálogo de prácticas, archivos y pruebas](practicas/README.md) y
 Elige un módulo y ejecuta su comando desde la raíz. Por ejemplo, M1:
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_m01_tarjeta_presentacion.py' -v
+python3 -m unittest discover -s practicas/modulo-01 -p 'test_m01_tarjeta_presentacion.py' -v
 ```
 
-El estado inicial es **FAIL por aserciones** hasta completar la actividad; no se esperan errores de importación, sintaxis ni pruebas omitidas. No instales paquetes. La [práctica complementaria de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
+El estado inicial es **FAIL por aserciones** hasta completar la actividad; no se esperan errores de importación, sintaxis ni pruebas omitidas. No instales paquetes. La práctica complementaria [La feria del sabor: tu puesto de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
 
 Las prácticas disponibles no cambian las casillas curriculares: una casilla marcada registra contenido previamente visto, no demuestra que se haya completado una actividad nueva.
 
@@ -128,7 +128,7 @@ Una casilla marcada indica que el tema aparece en código activo **antes de este
 - [ ] Trabajar con CSV y JSON.
 - [ ] Usar `pathlib`.
 
-No hay ejemplos impartidos registrados para esta sección. La [práctica propuesta de M7](practicas/guias/m07_exportar_inventario.md) no modifica ese historial.
+No hay ejemplos impartidos registrados para esta sección. La [práctica propuesta de M7](practicas/modulo-07/guia.md) no modifica ese historial.
 
 ### M8. Módulos, paquetes, `pip` y entornos virtuales — Parcial
 
@@ -149,7 +149,7 @@ No hay ejemplos impartidos registrados para esta sección. La [práctica propues
 - [ ] Definir su estructura.
 - [ ] Construirlo y presentarlo.
 
-La [práctica propuesta de M10](practicas/guias/m10_biblioteca.md) está disponible como proyecto independiente; todavía no se registra como contenido impartido.
+La [práctica propuesta de M10](practicas/modulo-10/guia.md) está disponible como proyecto independiente; todavía no se registra como contenido impartido.
 
 ### Temas complementarios pendientes de Majo
 

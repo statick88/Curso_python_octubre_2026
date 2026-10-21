@@ -1,4 +1,4 @@
-# M10 · Registro de lecturas
+# M10 · Pasaporte lector: organiza tu biblioteca
 
 Construye un proyecto independiente que carga, resume y guarda un registro JSON sintético.
 
@@ -9,8 +9,8 @@ Construye un proyecto independiente que carga, resume y guarda un registro JSON 
 
 ## Ruta rápida
 
-1. Edita `practicas/m10_biblioteca.py`; `test_m10_biblioteca.py` es docente.
-2. Ejecuta desde la raíz: `python3 -m unittest discover -s practicas -p 'test_m10_biblioteca.py' -v`.
+1. Edita `practicas/modulo-10/m10_biblioteca.py`; `test_m10_biblioteca.py` es docente.
+2. Ejecuta desde la raíz: `python3 -m unittest discover -s practicas/modulo-10 -p 'test_m10_biblioteca.py' -v`.
 3. Trabaja solo con archivos sintéticos temporales.
 
 `cargar_lecturas(path)` acepta una lista JSON ordenada de registros con `titulo` no vacío y estado `pendiente` o `leido`; JSON o esquema inválido generan `ValueError` y ruta ausente `FileNotFoundError`. `resumir_por_estado(items)` devuelve siempre ambas claves desde cero sin mutar entradas. `guardar_reporte(path, resumen)` crea un JSON nuevo, devuelve `None` y rechaza sobrescritura con `FileExistsError` sin cambiar el archivo existente.

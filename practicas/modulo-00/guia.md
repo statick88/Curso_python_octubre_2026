@@ -1,4 +1,4 @@
-# M0: planificador de salida escolar
+# M0 · Misión excursión: planifica la aventura
 
 Planifica una salida escolar antes de programar. El resultado es un documento razonado, no código Python.
 
@@ -14,10 +14,10 @@ Organizar un problema en entradas, salidas y subproblemas, y comparar alternativ
 
 ## Durante el laboratorio
 
-Edita **solo** `practicas/m00_planificador.md`: reemplaza todos los marcadores visibles y conserva los encabezados. Escribe al menos cuatro subproblemas no vacíos y dos alternativas no vacías usando las listas visibles de la plantilla. No hay una respuesta única ni la prueba evalúa tu razonamiento.
+Edita **solo** `practicas/modulo-00/m00_planificador.md`: reemplaza todos los marcadores visibles y conserva los encabezados. Escribe al menos cuatro subproblemas no vacíos y dos alternativas no vacías usando las listas visibles de la plantilla. No hay una respuesta única ni la prueba evalúa tu razonamiento.
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas -p 'test_m00_planificador.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas/modulo-00 -p 'test_m00_planificador.py' -v
 ```
 
 **Checkpoint:** inicialmente varias pruebas fallan porque el material contiene marcadores y listas sin completar. Tras completar tu plan, las cuatro pruebas estructurales quedan en `OK`. Comprueban estructura y contenido visible, no una respuesta única; la revisión docente oral decide si la propuesta es factible.

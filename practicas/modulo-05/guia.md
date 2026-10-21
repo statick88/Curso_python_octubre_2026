@@ -1,6 +1,6 @@
-# M05 · Organizar una maleta
+# M5 · La maleta inteligente: prepara tu aventura
 
-Organizarás pesos y paradas sin cambiar los datos originales. Edita solo `practicas/m05_maleta.py` y sigue los TODO numerados.
+Organizarás pesos y paradas sin cambiar los datos originales. Edita solo `practicas/modulo-05/m05_maleta.py` y sigue los TODO numerados.
 
 ## Objetivo
 
@@ -9,11 +9,11 @@ Practicar listas, tuplas, recorrido, filtrado, orden y creación de resultados n
 ## Antes del laboratorio
 
 1. Repasa [crear listas](https://statick88.github.io/Course_of_python/content/modulo-05/01-crear-listas.html), [métodos de listas](https://statick88.github.io/Course_of_python/content/modulo-05/03-metodos-listas.html), [iterar listas](https://statick88.github.io/Course_of_python/content/modulo-05/04-iterar-listas.html) y [tuplas](https://statick88.github.io/Course_of_python/content/modulo-05/05-tuplas.html).
-2. Abre `practicas/m05_maleta.py`; no borres las firmas ni los TODO.
+2. Abre `practicas/modulo-05/m05_maleta.py`; no borres las firmas ni los TODO.
 3. Ejecuta:
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_m05_maleta.py' -v
+python3 -m unittest discover -s practicas/modulo-05 -p 'test_m05_maleta.py' -v
 ```
 
 El resultado inicial debe fallar porque las plantillas están vacías. No infieras dominio a partir de ese estado inicial.

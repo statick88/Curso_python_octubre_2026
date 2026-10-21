@@ -1,4 +1,4 @@
-# M2: presupuesto de viaje
+# M2 · Rumbo a la aventura: calcula tu presupuesto
 
 Transforma datos de texto en un costo y en un mensaje listo para mostrar después.
 
@@ -14,7 +14,7 @@ Practicar conversión numérica, cadenas, métodos y `round()`. Revisa las lecci
 
 ## Durante el laboratorio
 
-Edita **solo** `practicas/m02_presupuesto_viaje.py`. Completa las tres funciones sin `print()`, `input()` ni manejo de entradas inválidas. Los textos válidos representan números finitos no negativos.
+Edita **solo** `practicas/modulo-02/m02_presupuesto_viaje.py`. Completa las tres funciones sin `print()`, `input()` ni manejo de entradas inválidas. Los textos válidos representan números finitos no negativos.
 
 | Llamada | Resultado |
 | --- | --- |
@@ -25,7 +25,7 @@ Edita **solo** `practicas/m02_presupuesto_viaje.py`. Completa las tres funciones
 | `formatear_presupuesto(' loja ', 4.2)` | `'Viaje a Loja: $4.20'` |
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas -p 'test_m02_presupuesto_viaje.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas/modulo-02 -p 'test_m02_presupuesto_viaje.py' -v
 ```
 
 **Checkpoint:** RED inicial significa que los `return` provisionales aún no cumplen el contrato, no un error de sintaxis. GREEN tras tu solución confirma ejemplos, cero, redondeo, formato, ausencia de salida y conservación de argumentos.

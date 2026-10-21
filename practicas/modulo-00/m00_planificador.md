@@ -1,4 +1,4 @@
-# Planificador de salida escolar
+# Misión excursión: planifica la aventura
 
 Completa cada marcador con tu propia planificación. No existe una única solución: el docente revisará la viabilidad, la descomposición y tu justificación durante la defensa oral.
 

@@ -1,6 +1,6 @@
-# M06 · Votación del club
+# M6 · ¡Tu voto cuenta! Elige al representante
 
-Analizarás una lista de votos para contar candidatos, eliminar repetidos y decidir si existe un ganador único. Edita `practicas/m06_votacion_club.py` siguiendo los TODO numerados.
+Analizarás una lista de votos para contar candidatos, eliminar repetidos y decidir si existe un ganador único. Edita `practicas/modulo-06/m06_votacion_club.py` siguiendo los TODO numerados.
 
 ## Objetivo
 
@@ -9,11 +9,11 @@ Usar diccionarios y sets para resumir una colección, reconocer duplicados y res
 ## Antes del laboratorio
 
 1. Repasa [crear diccionarios](https://statick88.github.io/Course_of_python/content/modulo-06/01-crear-diccionarios.html), [iterar diccionarios](https://statick88.github.io/Course_of_python/content/modulo-06/03-iterar-diccionarios.html), [sets](https://statick88.github.io/Course_of_python/content/modulo-06/04-sets.html) y el [desafío de votaciones](https://statick88.github.io/Course_of_python/content/modulo-06/desafio-05-votaciones.html).
-2. Abre solo `practicas/m06_votacion_club.py` y revisa sus TODO.
+2. Abre solo `practicas/modulo-06/m06_votacion_club.py` y revisa sus TODO.
 3. Ejecuta:
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_m06_votacion_club.py' -v
+python3 -m unittest discover -s practicas/modulo-06 -p 'test_m06_votacion_club.py' -v
 ```
 
 Las pruebas iniciales fallan por las plantillas vacías. Ese resultado es esperado y no acredita dominio.

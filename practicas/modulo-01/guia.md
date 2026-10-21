@@ -1,4 +1,4 @@
-# M1: tarjeta de presentación
+# M1 · ¡Hola, equipo! Tu tarjeta de presentación
 
 Construye una interacción breve que solicita dos datos y muestra una oración exacta.
 
@@ -14,7 +14,7 @@ Usar `input()`, variables y `print()` con f-strings. Revisa las lecciones oficia
 
 ## Durante el laboratorio
 
-Edita **solo** `practicas/m01_tarjeta_presentacion.py`. Completa `presentarse()` con una lectura para cada dato, en este orden y con estos mensajes exactos: `Nombre: ` y `Ciudad: `. Para Ana/Quito debe aparecer:
+Edita **solo** `practicas/modulo-01/m01_tarjeta_presentacion.py`. Completa `presentarse()` con una lectura para cada dato, en este orden y con estos mensajes exactos: `Nombre: ` y `Ciudad: `. Para Ana/Quito debe aparecer:
 
 ```text
 Hola, soy Ana y vivo en Quito.
@@ -23,7 +23,7 @@ Hola, soy Ana y vivo en Quito.
 No agregues ciclos, reintentos ni validación todavía. Conserva el texto válido tal como lo escribe la persona, incluidos sus espacios exteriores. Las pruebas pertenecen al docente.
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas -p 'test_m01_tarjeta_presentacion.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas/modulo-01 -p 'test_m01_tarjeta_presentacion.py' -v
 ```
 
 **Checkpoint:** al inicio el test queda en RED por una aserción de comportamiento. Cuando completes la función queda en GREEN: verifica orden de llamadas, mensajes, salida estándar, salida de error y retorno `None`.

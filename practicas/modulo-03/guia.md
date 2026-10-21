@@ -1,4 +1,4 @@
-# M3: reporte de paridad
+# M3 · Detectives de números: pares e impares
 
 Genera un reporte y un conteo sobre intervalos enteros inclusivos.
 
@@ -14,7 +14,7 @@ Aplicar `if`, resto `%`, `for`, `range` y `while`. Consulta las lecciones oficia
 
 ## Durante el laboratorio
 
-Edita **solo** `practicas/m03_reporte_paridad.py`. Los argumentos son enteros y cumplen `inicio <= fin`; pueden ser negativos o cero. `reporte_paridad(2, 3)` debe devolver exactamente:
+Edita **solo** `practicas/modulo-03/m03_reporte_paridad.py`. Los argumentos son enteros y cumplen `inicio <= fin`; pueden ser negativos o cero. `reporte_paridad(2, 3)` debe devolver exactamente:
 
 ```text
 2: par
@@ -32,7 +32,7 @@ Cada línea termina en salto de línea. `contar_pares(inicio, fin)` usa `while` 
 | `contar_pares(-3, -3)` | `0` |
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas -p 'test_m03_reporte_paridad.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s practicas/modulo-03 -p 'test_m03_reporte_paridad.py' -v
 ```
 
 **Checkpoint:** en RED inicial los retornos provisionales causan aserciones, no errores de importación. En GREEN se validan ejemplos, límites negativos, cero, intervalo de un elemento, último límite y ausencia de salida.

@@ -1,4 +1,4 @@
-# M08 · Saludos como paquete
+# M8 · La fábrica de saludos: crea tu paquete
 
 Reutiliza un catálogo docente desde un paquete y completa una función de formato.
 
@@ -9,9 +9,9 @@ Reutiliza un catálogo docente desde un paquete y completa una función de forma
 
 ## Ruta rápida
 
-1. Edita solo `practicas/m08_saludos/formato.py`.
+1. Edita solo `practicas/modulo-08/m08_saludos/formato.py`.
 2. No cambies `__init__.py`, `catalogo.py` ni `test_m08_saludos.py`: son archivos docentes.
-3. Ejecuta desde la raíz: `python3 -m unittest discover -s practicas -p 'test_m08_saludos.py' -v`.
+3. Ejecuta desde la raíz: `python3 -m unittest discover -s practicas/modulo-08 -p 'test_m08_saludos.py' -v`.
 
 `construir_saludo('Ana', 'manana')` debe devolver `Buenos días, Ana.`. Los otros momentos válidos son `tarde` (`Buenas tardes`) y `noche` (`Buenas noches`). Mantén acentos, coma y punto final.
 
