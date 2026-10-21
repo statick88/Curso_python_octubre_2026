@@ -2,7 +2,19 @@
 
 Material introductorio organizado por semanas. Cada archivo es un ejemplo independiente: ejecútalo desde la raíz del repositorio con `python3 ruta/al/archivo.py`.
 
-> Los ejemplos existentes se refactorizaron con nombres y comentarios en español. No se añadieron lecciones, soluciones ni archivos de código pendientes.
+> Los 14 ejemplos existentes conservan su comportamiento. El directorio `practicas/` añade una actividad ABP incompleta para el estudiante y sus pruebas docentes, sin entregar soluciones.
+
+## Práctica guiada
+
+La práctica ABP [Puesto de snacks de la feria](practicas/README.md) ofrece un proyecto pequeño con comentarios `TODO` y pruebas `unittest` docentes. Desde la raíz, inicia con:
+
+```bash
+python3 -m unittest discover -s practicas -p 'test_*.py' -v
+```
+
+Las pruebas de la práctica fallan inicialmente por aserciones: debes completar los `TODO` para llegar a `OK`. No hay pruebas omitidas ni fallos de importación esperados.
+
+La práctica no cambia el significado de las casillas curriculares: una casilla marcada solo registra contenido previamente visto; no demuestra que cada estudiante haya completado una actividad.
 
 ## Índice de ejemplos
 
