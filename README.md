@@ -6,7 +6,7 @@ Material introductorio organizado por semanas. Cada archivo es un ejemplo indepe
 
 ## Práctica guiada
 
-La práctica ABP [Puesto de snacks de la feria](practicas/README.md) ofrece un proyecto pequeño con comentarios `TODO` y pruebas `unittest` docentes. Desde la raíz, inicia con:
+La práctica ABP [Puesto de snacks de la feria](practicas/README.md) ofrece tres archivos de trabajo independientes, con comentarios `TODO` y pruebas `unittest` docentes. Desde la raíz, inicia con:
 
 ```bash
 python3 -m unittest discover -s practicas -p 'test_*.py' -v

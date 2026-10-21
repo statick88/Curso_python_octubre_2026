@@ -1,9 +1,9 @@
 # Práctica ABP: Puesto de snacks de la feria
 
-Construirás, por etapas, las tres funciones de un puesto de snacks. El archivo
-`feria_snacks.py` contiene el punto de partida: sigue los comentarios `TODO`,
-ejecuta las pruebas y mejora tu código hasta que todas pasen. No hay una
-solución entregada: el resultado se verifica por el comportamiento público.
+Construirás, por etapas, tres funciones de un puesto de snacks. Cada etapa tiene
+su propio archivo: sigue los comentarios `TODO`, ejecuta su prueba docente y
+mejora tu código hasta que pase. No hay una solución entregada: el resultado se
+verifica por el comportamiento público.
 
 **Duración estimada:** 90 minutos.
 
@@ -30,37 +30,39 @@ Lee, como máximo 20 minutos:
 - [Módulo 2](https://statick88.github.io/Course_of_python/content/modulo-02/index.html): cadenas, números y `round`.
 - [Módulo 3](https://statick88.github.io/Course_of_python/content/modulo-03/index.html): secciones `if` y `for`.
 
-Desde la raíz del repositorio, comprueba Python y ejecuta el punto de partida:
+Desde la raíz del repositorio, comprueba Python:
 
 ```bash
 python3 --version
-python3 -m unittest discover -s practicas -p 'test_*.py' -v
 ```
 
 Al comienzo las pruebas deben mostrar **FAIL** por aserciones: las funciones
-tienen un `return` provisional sin valor (devuelve `None`) que debes completar. Se descubren 12 pruebas,
-sin errores de importación o sintaxis ni pruebas omitidas. Algunos tests tienen
-subcasos, por lo que el número de fallos puede ser mayor que 12.
+tienen un `return` provisional sin valor (devuelve `None`) que debes completar.
+Se descubren 12 pruebas en total, sin errores de importación o sintaxis ni
+pruebas omitidas. Algunos tests tienen subcasos, por lo que el número de fallos
+puede ser mayor que 12.
 
 Todos los comandos siguientes parten de la raíz del repositorio; no cambies de
 directorio entre etapas.
 
 ## Archivos y roles
 
-| Archivo | Rol |
-| --- | --- |
-| `feria_snacks.py` | Tu espacio de trabajo: completa únicamente los cuerpos de las funciones. |
-| `test_feria_snacks.py` | Infraestructura docente: describe y verifica el comportamiento. No lo modifiques. |
+| Etapa | Tu archivo de trabajo | Prueba docente | Comando desde la raíz |
+| --- | --- | --- | --- |
+| 1 — etiqueta | `etiqueta_pedido.py` | `test_etiqueta_pedido.py` | `python3 -m unittest discover -s practicas -p 'test_etiqueta_pedido.py' -v` |
+| 2 — total | `calcular_total.py` | `test_calcular_total.py` | `python3 -m unittest discover -s practicas -p 'test_calcular_total.py' -v` |
+| 3 — turnos | `reporte_turnos.py` | `test_reporte_turnos.py` | `python3 -m unittest discover -s practicas -p 'test_reporte_turnos.py' -v` |
 
-Las clases `TestCase`, las importaciones de la biblioteca estándar y la captura
-de salida pertenecen a la infraestructura docente; no requieren conocimientos
-de programación orientada a objetos.
+Completa únicamente el cuerpo de la función de tu etapa. Las clases `TestCase`,
+las importaciones de la biblioteca estándar y la captura de salida pertenecen a
+la infraestructura docente; no requieren conocimientos de programación
+orientada a objetos.
 
 ## En el laboratorio
 
 ### Etapa 1 — guiada: etiqueta del pedido
 
-Completa `etiqueta_pedido(evento, producto, cantidad)`.
+Completa `etiqueta_pedido(evento, producto, cantidad)` en `etiqueta_pedido.py`.
 
 | Entrada válida | Salida exacta |
 | --- | --- |
@@ -71,17 +73,17 @@ Los textos son cadenas no vacías tal como llegan; `cantidad` es un entero mayor
 o igual que cero. Devuelve la cadena: no imprimas ni solicites datos.
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_*.py' -k TestEtapa1Etiqueta -v
+python3 -m unittest discover -s practicas -p 'test_etiqueta_pedido.py' -v
 ```
 
 **Checkpoint:** las 3 pruebas de la etapa terminan en `OK`.
 
 ### Etapa 2 — independiente: total del pedido
 
-Completa `calcular_total(precio_unitario, cantidad)`. El precio es un `int` o
-`float` finito no negativo y la cantidad es un entero no negativo. Devuelve el
-total redondeado a dos decimales; los valores fuera de ese contrato no forman
-parte de esta actividad.
+Completa `calcular_total(precio_unitario, cantidad)` en `calcular_total.py`. El
+precio es un `int` o `float` finito no negativo y la cantidad es un entero no
+negativo. Devuelve el total redondeado a dos decimales; los valores fuera de ese
+contrato no forman parte de esta actividad.
 
 | Entrada válida | Salida esperada |
 | --- | --- |
@@ -91,17 +93,17 @@ parte de esta actividad.
 | `(0, 8)` | `0.0` |
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_*.py' -k TestEtapa2Total -v
+python3 -m unittest discover -s practicas -p 'test_calcular_total.py' -v
 ```
 
 **Checkpoint:** las 4 pruebas de la etapa terminan en `OK`.
 
 ### Etapa 3 — reto obligatorio: reporte de turnos
 
-Completa `reporte_turnos(turnos, stock)`. Ambos valores son enteros mayores o
-iguales que cero. Genera una línea por cada turno de 1 a `turnos`: primero se
-atienden como máximo `stock` turnos y los restantes quedan sin stock. Cada línea
-termina en `\n`; con cero turnos devuelve `''`.
+Completa `reporte_turnos(turnos, stock)` en `reporte_turnos.py`. Ambos valores
+son enteros mayores o iguales que cero. Genera una línea por cada turno de 1 a
+`turnos`: primero se atienden como máximo `stock` turnos y los restantes quedan
+sin stock. Cada línea termina en `\n`; con cero turnos devuelve `''`.
 
 Para `(4, 2)`, el resultado exacto es:
 
@@ -116,7 +118,7 @@ Usa `for`, `range`, `if` y una cadena acumuladora. No uses `while`, listas por
 comprensión, `print()`, `input()` ni archivos.
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_*.py' -k TestEtapa3Turnos -v
+python3 -m unittest discover -s practicas -p 'test_reporte_turnos.py' -v
 ```
 
 **Checkpoint final:** ejecuta desde la raíz:
@@ -130,7 +132,8 @@ la especificación pública para comprobar tu avance.
 
 ## Después del laboratorio
 
-Entrega `feria_snacks.py` completado y un registro breve del proceso: qué
+Entrega los tres archivos completados (`etiqueta_pedido.py`,
+`calcular_total.py` y `reporte_turnos.py`) y un registro breve del proceso: qué
 probaste, qué fallo de prueba viste y qué cambiaste. Durante la revisión oral,
 demuestra una función y explica por qué devuelve el resultado en lugar de
 imprimirlo. Escribe además un ejemplo propio válido para cada función y explica
@@ -166,9 +169,10 @@ stock exacto mal resuelto y eliminación indebida de espacios. Los 14 ejemplos
 anteriores conservan su salida y código de salida.
 
 El ebook se comprobó de forma acotada con 36 pruebas existentes y el render HTML
-de siete páginas de M1–M2 y de `if`/`for` de M3, sin ejecutar sus bloques. Esto no
-certifica cada ejemplo del libro ni sus versiones PDF/EPUB. La práctica usa solo
-la biblioteca estándar y no necesita las dependencias de validación del ebook.
+de siete páginas de M1–M2 y de `if`/`for` de M3, sin ejecutar sus bloques. Esto
+no certifica cada ejemplo del libro ni sus versiones PDF/EPUB. La práctica usa
+solo la biblioteca estándar y no necesita las dependencias de validación del
+ebook.
 
 ## Más adelante
 
