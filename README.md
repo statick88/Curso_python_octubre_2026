@@ -2,19 +2,26 @@
 
 Material introductorio organizado por semanas. Cada archivo es un ejemplo independiente: ejecútalo desde la raíz del repositorio con `python3 ruta/al/archivo.py`.
 
-> Los 14 ejemplos existentes conservan su comportamiento. El directorio `practicas/` añade una actividad ABP incompleta para el estudiante y sus pruebas docentes, sin entregar soluciones.
+> Los 14 ejemplos existentes conservan su comportamiento. `practicas/` contiene once prácticas ABP independientes para M0–M10 y conserva las tres etapas de snacks, sin entregar soluciones.
 
-## Práctica guiada
+## Prácticas guiadas por módulo
 
-La práctica ABP [Puesto de snacks de la feria](practicas/README.md) ofrece tres archivos de trabajo independientes, con comentarios `TODO` y pruebas `unittest` docentes. Desde la raíz, inicia con:
+Consulta el [catálogo de prácticas, archivos y pruebas](practicas/README.md) y la [guía del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html). Cada módulo tiene un artefacto editable, comentarios o marcadores de trabajo, una guía y pruebas docentes de la biblioteca estándar.
+
+- **M0:** completa un plan en Markdown; las pruebas revisan su estructura, no la calidad del razonamiento.
+- **M1–M8:** completa el archivo indicado por la guía del módulo.
+- **M9:** escribe pruebas para las funciones docentes proporcionadas.
+- **M10:** integra conceptos en un proyecto independiente, sin importar prácticas anteriores incompletas.
+
+Elige un módulo y ejecuta su comando desde la raíz. Por ejemplo, M1:
 
 ```bash
-python3 -m unittest discover -s practicas -p 'test_*.py' -v
+python3 -m unittest discover -s practicas -p 'test_m01_tarjeta_presentacion.py' -v
 ```
 
-Las pruebas de la práctica fallan inicialmente por aserciones: debes completar los `TODO` para llegar a `OK`. No hay pruebas omitidas ni fallos de importación esperados.
+El estado inicial es **FAIL por aserciones** hasta completar la actividad; no se esperan errores de importación, sintaxis ni pruebas omitidas. No instales paquetes. La [práctica complementaria de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
 
-La práctica no cambia el significado de las casillas curriculares: una casilla marcada solo registra contenido previamente visto; no demuestra que cada estudiante haya completado una actividad.
+Las prácticas disponibles no cambian las casillas curriculares: una casilla marcada registra contenido previamente visto, no demuestra que se haya completado una actividad nueva.
 
 ## Índice de ejemplos
 
@@ -121,7 +128,7 @@ Una casilla marcada indica que el tema aparece en código activo **antes de este
 - [ ] Trabajar con CSV y JSON.
 - [ ] Usar `pathlib`.
 
-No existe código para esta sección todavía.
+No hay ejemplos impartidos registrados para esta sección. La [práctica propuesta de M7](practicas/guias/m07_exportar_inventario.md) no modifica ese historial.
 
 ### M8. Módulos, paquetes, `pip` y entornos virtuales — Parcial
 
@@ -142,7 +149,7 @@ No existe código para esta sección todavía.
 - [ ] Definir su estructura.
 - [ ] Construirlo y presentarlo.
 
-No existe código para esta sección todavía.
+La [práctica propuesta de M10](practicas/guias/m10_biblioteca.md) está disponible como proyecto independiente; todavía no se registra como contenido impartido.
 
 ### Temas complementarios pendientes de Majo
 
