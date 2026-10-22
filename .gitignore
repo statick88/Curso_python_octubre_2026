@@ -1,0 +1,7 @@
+# Estado de runtime para agentes (no versionado)
+.agents
+.progress
+
+# Python
+__pycache__/
+*.py[cod]
