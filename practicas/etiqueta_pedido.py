@@ -16,7 +16,14 @@ def etiqueta_pedido(evento, producto, cantidad):
     - etiqueta_pedido('Feria', 'Jugo', 3) devuelve 'Feria | 3 x Jugo'.
     - etiqueta_pedido('Patio', 'Pan', 0) devuelve 'Patio | 0 x Pan'.
     """
-    # TODO 1: Une los tres datos en una sola cadena con el formato indicado.
-    # TODO 2: Puedes usar concatenación o una f-string; no imprimas el resultado.
-    # TODO 3: Completa este return provisional con tu resultado.
-    return
+    # 1. La f-string arma la cadena en un solo paso: entre llaves va la
+    #    variable y fuera el texto fijo. cantidad llega como int, pero la
+    #    f-string la convierte a texto sola, así que no hace falta str().
+    # 2. Los separadores van CON espacios: " | " y " x ". Sin ellos la salida
+    #    sería "Feria|3xJugo" y assertEqual fallaría.
+    #    Con concatenación sería: evento + " | " + str(cantidad) + " x " + producto.
+    # 3. Se devuelve, no se imprime: return entrega el valor a quien llama la
+    #    función; con print() el valor saldría por pantalla y la función
+    #    devolvería None, que es justo lo que el test comprueba.
+    salida1 = f"{evento} | {cantidad} x {producto}"
+    return salida1

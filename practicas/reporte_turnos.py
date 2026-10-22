@@ -19,10 +19,24 @@ def reporte_turnos(turnos, stock):
       'Turno 1: atendido\\nTurno 2: atendido\\nTurno 3: sin stock\\n'
       'Turno 4: sin stock\\n'.
     """
-    # TODO 1: Crea una cadena acumuladora inicialmente vacía.
-    # TODO 2: Recorre con for y range los turnos, incluyendo el último turno.
-    # TODO 3: Con if decide si el turno actual todavía tiene stock.
-    # TODO 4: Agrega una línea al acumulador en cada vuelta, con su salto de línea.
-    # TODO 5: Completa este return provisional con el acumulador.
+    # 1. El acumulador arranca vacío: si turnos es 0 el for no da ninguna
+    #    vuelta y se devuelve "" tal como pide el enunciado.
+    reporte = ""
+
+    # 2. range(1, turnos + 1) recorre 1, 2, ... turnos. El +1 es necesario
+    #    porque range() excluye el límite, y así el último turno también entra.
+    for numero in range(1, turnos + 1):
+
+        # 3. Los primeros stock turnos se atienden; a partir de ahí no hay
+        #    stock, así que el resto de la cola queda sin atender.
+        if numero <= stock:
+
+            # 4. Cada vuelta añade su línea al acumulador, con el salto de
+            #    línea "\n" al final para separar los turnos entre sí.
+            reporte += f"Turno {numero}: atendido\n"
+        else:
+            reporte += f"Turno {numero}: sin stock\n"
+
+    # 5. Se devuelve el acumulador completo, ya con todas las líneas.
     # No uses print(), input() ni archivos.
-    return
+    return reporte

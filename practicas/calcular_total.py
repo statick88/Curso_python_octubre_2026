@@ -1,4 +1,5 @@
-"""Esqueleto de la etapa 2: total de pedido de la feria.
+"""
+Esqueleto de la etapa 2: total de pedido de la feria.
 
 Completa la función siguiendo sus comentarios numerados. No agregues print(),
 input(), archivos ni clases: las pruebas llamarán la función.
@@ -20,7 +21,16 @@ def calcular_total(precio_unitario, cantidad):
 
     Pista sobre la herramienta: ``round(1.236, 2)`` produce ``1.24``.
     """
-    # TODO 1: Decide qué operación representa el costo de varias unidades.
-    # TODO 2: Aplica round al resultado para conservar dos decimales.
-    # TODO 3: Completa este return provisional con tu valor; no lo imprimas.
-    return
+    # 1. El costo de varias unidades es el precio de una unidad multiplicado
+    #    por cuantas unidades se compran.
+    total = precio_unitario * cantidad
+
+    # 2. round(total, 2) deja el total con dos decimales.
+    #    El float() no sobra: si el precio y la cantidad son int, el producto
+    #    también lo es y round(4 * 0, 2) devolvería 0 (int), no 0.0 como
+    #    documenta el enunciado.
+    total = round(float(total), 2)
+
+    # 3. Se devuelve el total con return; con print() el resultado saldría
+    #    fuera de la función y el test lo detectaría como fallo.
+    return total
