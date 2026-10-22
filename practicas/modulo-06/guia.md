@@ -1,5 +1,7 @@
 # M6 · ¡Tu voto cuenta! Elige al representante
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Analizarás una lista de votos para contar candidatos, eliminar repetidos y decidir si existe un ganador único. Edita `practicas/modulo-06/m06_votacion_club.py` siguiendo los TODO numerados.
 
 ## Objetivo

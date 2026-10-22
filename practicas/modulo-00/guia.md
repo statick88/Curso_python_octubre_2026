@@ -1,5 +1,7 @@
 # M0 · Misión excursión: planifica la aventura
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Planifica una salida escolar antes de programar. El resultado es un documento razonado, no código Python.
 
 ## Objetivo y requisitos previos

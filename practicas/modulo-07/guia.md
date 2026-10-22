@@ -1,5 +1,7 @@
 # M7 · Misión inventario: del CSV al JSON
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Convierte un CSV sintético de inventario en un JSON nuevo y protegido contra sobrescrituras.
 
 ## Objetivo y requisito

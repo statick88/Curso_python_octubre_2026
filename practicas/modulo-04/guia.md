@@ -1,5 +1,7 @@
 # M4 · Entrega especial: crea tu recibo de envío
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Construirás dos funciones que calculan un envío y presentan su recibo. El archivo que editas es `practicas/modulo-04/m04_recibo_envio.py`; no escribas un programa que pida datos ni imprimas resultados.
 
 ## Objetivo

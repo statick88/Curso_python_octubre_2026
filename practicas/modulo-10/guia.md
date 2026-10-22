@@ -1,5 +1,7 @@
 # M10 · Pasaporte lector: organiza tu biblioteca
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Construye un proyecto independiente que carga, resume y guarda un registro JSON sintético.
 
 ## Objetivo y requisito

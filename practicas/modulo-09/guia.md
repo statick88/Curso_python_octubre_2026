@@ -1,5 +1,7 @@
 # M9 · Cazadores de errores: prueba los impuestos
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Aquí tu producto es una suite `unittest`: las funciones de impuestos son soporte docente, no una solución que debas reescribir.
 
 ## Objetivo y requisito

@@ -1,5 +1,7 @@
 # M2 · Rumbo a la aventura: calcula tu presupuesto
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Transforma datos de texto en un costo y en un mensaje listo para mostrar después.
 
 ## Objetivo y requisitos previos

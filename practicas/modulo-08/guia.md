@@ -1,5 +1,7 @@
 # M8 · La fábrica de saludos: crea tu paquete
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Reutiliza un catálogo docente desde un paquete y completa una función de formato.
 
 ## Objetivo y requisito

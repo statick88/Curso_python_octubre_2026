@@ -1,5 +1,7 @@
 # M1 · ¡Hola, equipo! Tu tarjeta de presentación
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Construye una interacción breve que solicita dos datos y muestra una oración exacta.
 
 ## Objetivo y requisitos previos

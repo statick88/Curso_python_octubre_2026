@@ -2,16 +2,16 @@
 
 Material introductorio organizado por semanas. Cada archivo es un ejemplo independiente: ejecútalo desde la raíz del repositorio con `python3 ruta/al/archivo.py`.
 
-> Los 18 ejemplos existentes conservan su comportamiento. `practicas/` contiene once prácticas ABP independientes para M0–M10 y conserva las tres etapas de snacks, sin entregar soluciones.
+> **Rama `solucion`:** aquí están resueltas y comentadas las once prácticas M0–M10 y las tres etapas de snacks. `main` conserva las plantillas para estudiantes. Los 18 ejemplos semanales y el historial curricular no cambian.
 
-## Prácticas guiadas por módulo
+## Soluciones comentadas por módulo
 
-Consulta el [catálogo de prácticas, archivos y pruebas](practicas/README.md) y la [guía del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html). Cada módulo tiene un artefacto editable, comentarios o marcadores de trabajo, una guía y pruebas docentes de la biblioteca estándar.
+Consulta el [catálogo de prácticas, archivos y pruebas](practicas/README.md) y la [guía del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html). Cada módulo conserva el mismo título, carpeta, guía y pruebas del ebook. Los archivos de esta rama contienen implementaciones de referencia; las guías mantienen los enunciados originales para comparar el problema con su solución.
 
-- **M0:** completa un plan en Markdown; las pruebas revisan su estructura, no la calidad del razonamiento.
-- **M1–M8:** completa el archivo indicado por la guía del módulo.
-- **M9:** escribe pruebas para las funciones docentes proporcionadas.
-- **M10:** integra conceptos en un proyecto independiente, sin importar prácticas anteriores incompletas.
+- **M0:** un plan hipotético resuelto; sus pruebas estructurales no sustituyen el juicio del docente.
+- **M1–M8:** funciones resueltas y comentadas en el archivo de cada módulo.
+- **M9:** cuatro métodos de prueba reales contra las funciones docentes y sus errores posibles.
+- **M10:** un pipeline JSON independiente de carga, resumen y creación de reporte.
 
 Elige un módulo y ejecuta su comando desde la raíz. Por ejemplo, M1:
 
@@ -19,7 +19,15 @@ Elige un módulo y ejecuta su comando desde la raíz. Por ejemplo, M1:
 python3 -m unittest discover -s practicas/modulo-01 -p 'test_m01_tarjeta_presentacion.py' -v
 ```
 
-El estado inicial es **FAIL por aserciones** hasta completar la actividad; no se esperan errores de importación, sintaxis ni pruebas omitidas. No instales paquetes. La práctica complementaria [La feria del sabor: tu puesto de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
+En `main`, el estado inicial es **FAIL por aserciones**. En `solucion`, las 58 pruebas docentes deben dar **OK**, sin referencias privadas, errores ni omisiones. En un clon limpio puedes comprobar esta rama con:
+
+```bash
+git switch solucion
+python3 -m unittest discover -s practicas -p 'test_*.py' -v
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+```
+
+El segundo comando de pruebas ejecuta cuatro métodos de organización y aceptación, incluido uno que exige las 58 comprobaciones docentes verdes. No instales paquetes. La práctica complementaria [La feria del sabor: tu puesto de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
 
 Las prácticas disponibles no cambian las casillas curriculares: una casilla marcada registra contenido previamente visto, no demuestra que se haya completado una actividad nueva.
 

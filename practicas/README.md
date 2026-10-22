@@ -1,6 +1,6 @@
 # Misiones Python: aprende practicando
 
-Cada actividad es independiente: completa sus comentarios `TODO` o marcadores y ejecuta únicamente la prueba de ese módulo. No necesitas terminar archivos anteriores para importar la práctica siguiente. Disponer de una actividad no significa que sus temas ya se hayan impartido o dominado.
+**Rama `solucion`:** las once actividades M0–M10 están resueltas y las tres soluciones de snacks existentes se conservan. `main` mantiene los comentarios `TODO` y marcadores para estudiantes. Cada actividad es independiente; las guías conservan el enunciado para contrastarlo con el archivo resuelto. Las soluciones disponibles no demuestran dominio ni cambian el historial de lo impartido.
 
 Usa Python 3 y su biblioteca estándar, sin instalar paquetes. Consulta también el [catálogo del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html): explica qué repasar, qué revisar y qué evidencia entregar.
 
@@ -8,7 +8,7 @@ Usa Python 3 y su biblioteca estándar, sin instalar paquetes. Consulta también
 
 Cada módulo tiene su carpeta `practicas/modulo-NN/`, con el archivo de trabajo, las pruebas y `guia.md`. La tabla muestra nombres breves; sus enlaces incluyen la carpeta completa. Ejecuta los comandos desde la **raíz del repositorio**, sin cambiar de directorio entre módulos.
 
-| Módulo | Artefacto que editas | Prueba docente | Instrucciones |
+| Módulo | Archivo resuelto | Prueba docente | Enunciado y guía |
 | --- | --- | --- | --- |
 | M0 · Misión excursión: planifica la aventura | [m00_planificador.md](modulo-00/m00_planificador.md) | [test_m00_planificador.py](modulo-00/test_m00_planificador.py) | [Guía M0](modulo-00/guia.md) |
 | M1 · ¡Hola, equipo! Tu tarjeta de presentación | [m01_tarjeta_presentacion.py](modulo-01/m01_tarjeta_presentacion.py) | [test_m01_tarjeta_presentacion.py](modulo-01/test_m01_tarjeta_presentacion.py) | [Guía M1](modulo-01/guia.md) |
@@ -32,7 +32,7 @@ Ejemplo para M5; cada guía contiene su comando exacto:
 python3 -m unittest discover -s practicas/modulo-05 -p 'test_m05_maleta.py' -v
 ```
 
-La plantilla inicial debe dar **FAIL por aserciones**, no errores de importación o sintaxis ni pruebas omitidas. Tras completar el artefacto, su suite debe dar `OK`. No cambies pruebas docentes para conseguirlo; en M9, el archivo estudiantil de pruebas sí es tu producto.
+Las plantillas de `main` comienzan con **FAIL por aserciones**. Los archivos resueltos de esta rama deben dar `OK` sin errores ni pruebas omitidas. Las pruebas docentes son las mismas: no se modifican para aceptar las respuestas. En M9, el archivo estudiantil aporta cuatro métodos con aserciones reales.
 
 Para revisar todos los módulos nuevos:
 
@@ -46,11 +46,11 @@ Este comando descubre 46 métodos docentes. El comando global incluye además la
 python3 -m unittest discover -s practicas -p 'test_*.py' -v
 ```
 
-No necesitas que el comando global pase para entregar un solo módulo: los demás artefactos pueden seguir incompletos. En M7 y M10 las pruebas usan directorios temporales y datos sintéticos; no uses archivos personales como fixtures.
+En `main` puedes entregar un solo módulo aunque los demás estén incompletos. En `solucion` se exige que el comando global pase sus 58 métodos. En M7 y M10 las pruebas usan directorios temporales y datos sintéticos; no uses archivos personales como fixtures.
 
 ## Organización del material docente
 
-`test_modulos.py` agrupa las carpetas para conservar los comandos globales y el filtro de snacks; es infraestructura docente, no un archivo del estudiante. Las verificaciones de organización se ejecutan por separado y no requieren completar los TODO:
+`test_modulos.py` agrupa las carpetas para conservar los comandos globales y el filtro de snacks; es infraestructura docente, no un archivo del estudiante. Las verificaciones de organización y aceptación se ejecutan por separado. Esta rama tiene cuatro métodos: los tres de organización y uno adicional que exige las 58 pruebas docentes verdes sobre los archivos reales, sin sustituirlos:
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py' -v
@@ -60,10 +60,10 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 
 ## La feria del sabor: tu puesto de snacks
 
-Construirás, por etapas, tres funciones de un puesto de snacks. Cada etapa tiene
-su propio archivo: sigue los comentarios `TODO`, ejecuta su prueba docente y
-mejora tu código hasta que pase. No hay una solución entregada: el resultado se
-verifica por el comportamiento público.
+Las tres funciones de snacks ya están resueltas en esta rama y conservan sus
+soluciones comentadas anteriores. `main` contiene sus plantillas `TODO`.
+Las secciones siguientes conservan el enunciado original: compara sus reglas
+con la implementación y verifica el comportamiento público con las mismas pruebas.
 
 **Duración estimada:** 90 minutos.
 
@@ -96,8 +96,9 @@ Desde la raíz del repositorio, comprueba Python:
 python3 --version
 ```
 
-Al comienzo las pruebas deben mostrar **FAIL** por aserciones: las funciones
-tienen un `return` provisional sin valor (devuelve `None`) que debes completar.
+En las plantillas de `main`, las pruebas comienzan con **FAIL** por aserciones:
+las funciones tienen un `return` provisional sin valor. En esta rama las tres
+funciones están completas y sus doce pruebas deben dar **OK**.
 El filtro de esta actividad selecciona 12 pruebas docentes, sin errores de
 importación o sintaxis ni pruebas omitidas. Algunos tests tienen subcasos, por lo que el número de fallos
 puede ser mayor que 12.

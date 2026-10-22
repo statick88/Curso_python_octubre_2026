@@ -1,5 +1,7 @@
 # M5 · La maleta inteligente: prepara tu aventura
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Organizarás pesos y paradas sin cambiar los datos originales. Edita solo `practicas/modulo-05/m05_maleta.py` y sigue los TODO numerados.
 
 ## Objetivo

@@ -1,5 +1,7 @@
 # M3 · Detectives de números: pares e impares
 
+> **Rama `solucion`:** el artefacto está resuelto y sus pruebas deben pasar sin modificar al evaluador docente. El enunciado original de `main` se conserva debajo para comparar el problema con la respuesta.
+
 Genera un reporte y un conteo sobre intervalos enteros inclusivos.
 
 ## Objetivo y requisitos previos
