@@ -27,9 +27,9 @@ Completa `calcular_envio(peso, tarifa=3)`. Devuelve el peso multiplicado por la 
 Ejemplos públicos:
 
 ```python
-calcular_envio(2.5)       # 7.5
-calcular_envio(2.5, 4)    # 10.0
-calcular_envio(0)         # 0.0
+calcular_envio(2.5)  # 7.5
+calcular_envio(2.5, 4)  # 10.0
+calcular_envio(0)  # 0.0
 calcular_envio(1.234, 2)  # 2.47
 calcular_envio(2.5, tarifa=0)  # 0.0
 ```
@@ -39,9 +39,9 @@ calcular_envio(2.5, tarifa=0)  # 0.0
 Completa `crear_recibo(destino, peso, tarifa=3)` reutilizando el cálculo anterior. Debe **devolver**, no imprimir, el texto con moneda de dos decimales:
 
 ```python
-crear_recibo("Loja", 2.5)                 # "Envío a Loja: $7.50"
-crear_recibo("Quito", 1.234, tarifa=2)    # "Envío a Quito: $2.47"
-crear_recibo("Cuenca", 2.5, tarifa=0)     # "Envío a Cuenca: $0.00"
+crear_recibo("Loja", 2.5)  # "Envío a Loja: $7.50"
+crear_recibo("Quito", 1.234, tarifa=2)  # "Envío a Quito: $2.47"
+crear_recibo("Cuenca", 2.5, tarifa=0)  # "Envío a Cuenca: $0.00"
 ```
 
 **Punto de control:** vuelve a ejecutar el comando de prueba. Debe completar las cuatro pruebas sin salida adicional de tus funciones.

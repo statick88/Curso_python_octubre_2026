@@ -26,7 +26,7 @@ Completa `peso_total(pesos)` para devolver la suma. Una colección vacía suma c
 
 ```python
 peso_total([1.2, 2.3, 0.5])  # 4.0
-peso_total([])               # 0
+peso_total([])  # 0
 ```
 
 ### Parte 2 · Elegir artículos ligeros
@@ -35,8 +35,8 @@ Completa `seleccionar_livianos(pesos, limite)`. Devuelve una **lista nueva** con
 
 ```python
 seleccionar_livianos([5, 2, 5, 1], 5)  # [5, 2, 5, 1]
-seleccionar_livianos([1, 4, 7], 4)     # [1, 4]
-seleccionar_livianos([], 4)            # []
+seleccionar_livianos([1, 4, 7], 4)  # [1, 4]
+seleccionar_livianos([], 4)  # []
 ```
 
 ### Parte 3 · Regresar por el itinerario
@@ -45,8 +45,8 @@ Completa `invertir_itinerario(paradas)`. Recibe una tupla y devuelve una lista n
 
 ```python
 invertir_itinerario(("Quito", "Ambato", "Loja"))  # ["Loja", "Ambato", "Quito"]
-invertir_itinerario(())                              # []
-invertir_itinerario(("Cuenca",))                    # ["Cuenca"]
+invertir_itinerario(())  # []
+invertir_itinerario(("Cuenca",))  # ["Cuenca"]
 ```
 
 **Punto de control:** ejecuta de nuevo la prueba. Deben pasar las cinco pruebas y las colecciones de entrada deben permanecer iguales.

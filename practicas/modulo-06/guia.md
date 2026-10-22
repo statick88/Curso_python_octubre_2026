@@ -26,10 +26,10 @@ Completa `contar_votos(votos)` para devolver un diccionario de cantidades y `can
 
 ```python
 votos = ["Ana", "Luis", "Ana", "Mia"]
-contar_votos(votos)        # {"Ana": 2, "Luis": 1, "Mia": 1}
-candidatos_unicos(votos)   # {"Ana", "Luis", "Mia"}
-contar_votos([])           # {}
-candidatos_unicos([])      # set()
+contar_votos(votos)  # {"Ana": 2, "Luis": 1, "Mia": 1}
+candidatos_unicos(votos)  # {"Ana", "Luis", "Mia"}
+contar_votos([])  # {}
+candidatos_unicos([])  # set()
 ```
 
 ### Parte 2 · Decidir el ganador
@@ -38,9 +38,9 @@ Completa `ganador(conteo)`. Devuelve el nombre solo si la cantidad máxima perte
 
 ```python
 ganador({"Luis": 1, "Ana": 3, "Mia": 2})  # "Ana"
-ganador({"Ana": 2})                          # "Ana"
-ganador({"Ana": 2, "Luis": 2, "Mia": 1}) # None
-ganador({})                                 # None
+ganador({"Ana": 2})  # "Ana"
+ganador({"Ana": 2, "Luis": 2, "Mia": 1})  # None
+ganador({})  # None
 ```
 
 **Punto de control:** ejecuta el comando de prueba otra vez. Deben pasar las seis pruebas sin texto impreso por las funciones.
