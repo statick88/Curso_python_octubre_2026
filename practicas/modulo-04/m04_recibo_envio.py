@@ -1,13 +1,12 @@
-"""Práctica ABP M04: recibo de envío."""
+"""Solución comentada: costo y recibo de un envío."""
 
 
-# TODO 1: calcula el costo del envío multiplicando peso por tarifa.
-# TODO 2: redondea el resultado a dos decimales y devuélvelo.
 def calcular_envio(peso, tarifa=3):
-    return
+    """Usa la tarifa explícita o, si se omite, la tarifa por defecto."""
+    return round(peso * tarifa, 2)
 
 
-# TODO 3: reutiliza calcular_envio para obtener el costo.
-# TODO 4: construye y devuelve el recibo con el formato indicado en la guía.
 def crear_recibo(destino, peso, tarifa=3):
-    return
+    """Reutiliza el cálculo y devuelve el texto, sin imprimirlo."""
+    costo = calcular_envio(peso, tarifa)
+    return f"Envío a {destino}: ${costo:.2f}"

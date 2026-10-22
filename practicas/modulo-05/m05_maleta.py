@@ -1,18 +1,21 @@
-"""Práctica ABP M05: organización de una maleta."""
+"""Solución comentada: sumar, seleccionar y copiar colecciones."""
 
 
-# TODO 1: suma los pesos de la colección y devuelve el total.
 def peso_total(pesos):
-    return
+    """Suma los pesos sin cambiar la colección recibida."""
+    return sum(pesos)
 
 
-# TODO 2: crea una lista nueva con los pesos menores o iguales al límite.
-# TODO 3: conserva el orden original sin modificar pesos.
 def seleccionar_livianos(pesos, limite):
-    return
+    """Crea una lista nueva y conserva el orden de los pesos admitidos."""
+    seleccionados = []
+    for peso in pesos:
+        if peso <= limite:
+            seleccionados.append(peso)
+    # Incluso si todos caben, el resultado no comparte la lista de entrada.
+    return seleccionados
 
 
-# TODO 4: devuelve una lista nueva con las paradas en orden inverso.
-# TODO 5: no modifiques la tupla recibida.
 def invertir_itinerario(paradas):
-    return
+    """Invierte la tupla mediante slicing y devuelve una lista nueva."""
+    return list(paradas[::-1])

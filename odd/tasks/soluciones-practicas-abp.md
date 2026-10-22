@@ -10,9 +10,9 @@ Acceptance follows the existing per-module `guia.md` and unchanged teacher tests
 
 ## Tasks
 
-- T0 | S1 | route: inline parent | reconcile remote main/solucion with new module materials, record initial public RED | commit: integration baseline | done
-- T1 | S1 | route: inline parent | complete M0–M6 and observe focused teacher GREEN | commit: pending | pending
-- T2 | S1 | route: inline parent | complete M7–M10, retain three existing snacks solutions, observe public 58-method GREEN | commit: pending | pending
+- T0 | S1 | route: inline parent | reconcile remote main/solucion with new module materials, record initial public RED | commit: 296d6be47359452de5155b12775633951d45b1da | done
+- T1 | S1 | route: inline parent | complete M0–M6 and observe focused teacher GREEN | commit: this work unit | done
+- T2 | S1 | route: inline parent | complete M7–M10, retain three existing snacks solutions, observe public 58-method GREEN | commit: pending | in_progress
 - T3 | S1 | route: inline parent | document branch roles, verify public acceptance, unchanged teacher checks and weekly examples, lint/format | commit: pending | pending
 - T4 | S1 | route: inline parent | publish fast-forward updates without force and confirm remote solution files and tests | commit: pending | pending
 
@@ -23,3 +23,4 @@ Acceptance follows the existing per-module `guia.md` and unchanged teacher tests
 - L3. Created isolated worktrees `integracion` (`feat/abp-publicacion-integrada`, from remote main) and `soluciones` (`feat/abp-soluciones`, from remote solucion). The original dirty ebook main remains untouched. No push has occurred. Publication retry job-40 stopped at the ancestry preflight; it never started the newly authorized 40-minute render.
 - L4. Existing maintenance checks already accept assertion-RED templates and GREEN solutions with unchanged method counts. Do not weaken them. Teacher tests and instructional guides are the public contract; reference code must not import private verification helpers or unfinished exercises.
 - L5. Public initial RED observed: exit 1, 58 teacher methods, assertion failures only; twelve existing snacks checks remain GREEN. No private references were injected. README merge preserves the remote eighteen-example index and all curriculum checkboxes; weekly Python files and three existing snacks solutions remain byte-identical.
+- L6. T1: existing public tests for M0–M6 all GREEN (32 methods, exit 0, no output/errors/skips); seven artifacts pass Ruff check and format. M3 uses the required while loop; M0 contains explicitly hypothetical data and still requires instructor judgment. Risk: none; weekly examples, teacher tests and existing snacks solutions are unchanged.

@@ -1,19 +1,26 @@
-"""Reportes de paridad para practicar intervalos inclusivos."""
+"""Solución comentada: intervalos inclusivos con for y while."""
 
 
 def reporte_paridad(inicio, fin):
-    """Devuelve una línea por entero del intervalo válido, incluidos sus límites."""
-    # TODO 1: Crea una cadena acumuladora vacía.
-    # TODO 2: Recorre desde inicio hasta fin, incluyendo fin.
-    # TODO 3: Decide con una condición si cada número es par o impar.
-    # TODO 4: Agrega cada línea con su salto de línea y devuelve el acumulador.
-    return
+    """Acumula una línea por entero, incluidos ambos extremos."""
+    reporte = ""
+    # range excluye su segundo argumento: fin + 1 incluye el último entero.
+    for numero in range(inicio, fin + 1):
+        if numero % 2 == 0:
+            paridad = "par"
+        else:
+            paridad = "impar"
+        reporte += f"{numero}: {paridad}\n"
+    return reporte
 
 
 def contar_pares(inicio, fin):
-    """Cuenta los enteros pares de un intervalo válido usando while."""
-    # TODO 1: Prepara un contador y una variable que comience en inicio.
-    # TODO 2: Usa while para recorrer hasta fin, incluyéndolo.
-    # TODO 3: Aumenta el contador solo para valores pares.
-    # TODO 4: Avanza al siguiente entero y devuelve el contador.
-    return
+    """Recorre el mismo intervalo mediante while y cuenta sus pares."""
+    cantidad = 0
+    numero = inicio
+    while numero <= fin:
+        if numero % 2 == 0:
+            cantidad += 1
+        # Avanzar siempre evita que el ciclo quede detenido en un impar.
+        numero += 1
+    return cantidad

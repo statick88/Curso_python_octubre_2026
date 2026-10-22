@@ -1,17 +1,28 @@
-"""Práctica ABP M06: votación de un club."""
+"""Solución comentada: conteo de votos, conjuntos y máximo único."""
 
 
-# TODO 1: cuenta cuántos votos tiene cada nombre y devuelve un diccionario.
 def contar_votos(votos):
-    return
+    """Acumula un voto por cada aparición de un nombre válido."""
+    conteo = {}
+    for nombre in votos:
+        conteo[nombre] = conteo.get(nombre, 0) + 1
+    return conteo
 
 
-# TODO 2: devuelve un set con los nombres que aparecen en los votos.
 def candidatos_unicos(votos):
-    return
+    """Un set elimina duplicados sin modificar la lista original."""
+    return set(votos)
 
 
-# TODO 3: devuelve el candidato con más votos si el máximo es único.
-# TODO 4: devuelve None cuando conteo está vacío o hay empate en el máximo.
 def ganador(conteo):
-    return
+    """Devuelve el máximo único; vacío o empate producen None."""
+    if not conteo:
+        return None
+    maximo = max(conteo.values())
+    ganadores = []
+    for nombre, cantidad in conteo.items():
+        if cantidad == maximo:
+            ganadores.append(nombre)
+    if len(ganadores) == 1:
+        return ganadores[0]
+    return None
