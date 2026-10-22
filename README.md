@@ -2,7 +2,7 @@
 
 Material introductorio organizado por semanas. Cada archivo es un ejemplo independiente: ejecútalo desde la raíz del repositorio con `python3 ruta/al/archivo.py`.
 
-> Los 14 ejemplos existentes conservan su comportamiento. El directorio `practicas/` añade una actividad ABP incompleta para el estudiante y sus pruebas docentes, sin entregar soluciones.
+> Los 18 ejemplos existentes conservan su comportamiento. El directorio `practicas/` añade una actividad ABP incompleta para el estudiante y sus pruebas docentes; las soluciones viven en la rama `solucion`, no en `main`.
 
 ## Práctica guiada
 
@@ -13,6 +13,14 @@ python3 -m unittest discover -s practicas -p 'test_*.py' -v
 ```
 
 Las pruebas de la práctica fallan inicialmente por aserciones: debes completar los `TODO` para llegar a `OK`. No hay pruebas omitidas ni fallos de importación esperados.
+
+Las soluciones resueltas y comentadas están en la rama `solucion`, que solo se diferencia de `main` en el directorio `practicas/`:
+
+```bash
+git checkout solucion
+python3 -m unittest discover -s practicas -p 'test_*.py' -v
+git checkout main
+```
 
 La práctica no cambia el significado de las casillas curriculares: una casilla marcada solo registra contenido previamente visto; no demuestra que cada estudiante haya completado una actividad.
 
@@ -41,6 +49,10 @@ La práctica no cambia el significado de las casillas curriculares: una casilla 
 | 07 | Indentación y funciones | [`07_indentacion.py`](semana2/07_indentacion.py) | `python3 semana2/07_indentacion.py` |
 | 08 | Palabras reservadas | [`08_palabras_reservadas.py`](semana2/08_palabras_reservadas.py) | `python3 semana2/08_palabras_reservadas.py` |
 | 09 | Nombres descriptivos | [`09_nombres_descriptivos.py`](semana2/09_nombres_descriptivos.py) | `python3 semana2/09_nombres_descriptivos.py` |
+| 10 | Ciclo `while`, `break` y `continue` | [`10_while.py`](semana2/10_while.py) | `python3 semana2/10_while.py` |
+| 11 | Ciclo `for` y `range` | [`11_for.py`](semana2/11_for.py) | `python3 semana2/11_for.py` |
+| 12 | Funciones, `return` y alcance | [`12_funciones.py`](semana2/12_funciones.py) | `python3 semana2/12_funciones.py` |
+| 13 | Errores con `try`, `except` y `finally` | [`13_excepciones.py`](semana2/13_excepciones.py) | `python3 semana2/13_excepciones.py` |
 
 ## Mapa de rutas
 
@@ -68,14 +80,14 @@ Una casilla marcada indica que el tema aparece en código activo **antes de este
 ### M0. Pensamiento computacional — Inicial
 
 - [x] Resolver un problema concreto con FizzBuzz.
-- [ ] Escribir pseudocódigo.
-- [ ] Descomponer explícitamente un problema en pasos.
+- [x] Escribir pseudocódigo.
+- [x] Descomponer explícitamente un problema en pasos.
 
 ### M1. Introducción — Parcial
 
 - [x] Ejecutar scripts y usar `print`.
 - [x] Conocer palabras reservadas con `keyword`.
-- [ ] Obtener datos con `input`.
+- [x] Obtener datos con `input`.
 
 ### M2. Tipos, operadores, casting y strings — Parcial
 
@@ -83,24 +95,25 @@ Una casilla marcada indica que el tema aparece en código activo **antes de este
 - [x] Usar operaciones matemáticas y comparaciones `>`, `<`, `>=` y `==`.
 - [x] Convertir activamente con `int` y `str`.
 - [x] Usar escapes y cadenas crudas.
-- [ ] Convertir con `float` y `bool`.
+- [x] Convertir con `float` y `bool`.
 - [ ] Usar métodos, f-strings y slicing de cadenas.
 - [ ] Usar `None`, identidad y pertenencia.
 - [ ] Usar números complejos en código activo.
-- [ ] Usar comparaciones `!=` en código activo.
+- [x] Usar comparaciones `!=` en código activo.
 
 ### M3. Control de flujo — Parcial
 
 - [x] Usar `if`, `elif`, `else` y una expresión condicional.
 - [x] Usar `for` y `range`.
-- [ ] Usar `while`, `break` y `continue`.
+- [x] Usar `while`, `break` y `continue`.
 - [ ] Usar condicionales anidados y comprehensions.
 
 ### M4. Funciones — Parcial
 
 - [x] Definir funciones, recibir parámetros, retornar y llamar funciones.
 - [ ] Usar parámetros por defecto, con nombre, `*args` y `**kwargs`.
-- [ ] Entender alcance, `lambda` y recursión.
+- [x] Entender alcance: variables locales y globales.
+- [ ] Usar `lambda` y recursión.
 
 ### M5. Listas y tuplas — Parcial
 
@@ -112,8 +125,8 @@ Una casilla marcada indica que el tema aparece en código activo **antes de este
 
 - [x] Crear diccionarios, usar claves y eliminar con `pop`.
 - [x] Crear sets para eliminar duplicados.
-- [ ] Acceder, actualizar e iterar diccionarios.
-- [ ] Usar diccionarios anidados y operaciones de sets.
+- [x] Acceder, actualizar e iterar diccionarios.
+- [x] Usar diccionarios anidados y operaciones de sets.
 
 ### M7. Archivos, CSV, JSON y `pathlib` — Pendiente
 
@@ -132,8 +145,8 @@ No existe código para esta sección todavía.
 ### M9. Buenas prácticas, errores, docstrings y testing — Parcial
 
 - [x] Usar nombres, comentarios, docstrings y sangría de cuatro espacios en ejemplos existentes.
-- [ ] Aplicar PEP 8 de forma formal.
-- [ ] Manejar errores y excepciones.
+- [x] Aplicar PEP 8 de forma formal.
+- [x] Manejar errores y excepciones.
 - [ ] Escribir pruebas.
 
 ### M10. Proyecto integrador — Pendiente
