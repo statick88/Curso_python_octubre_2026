@@ -4,5 +4,6 @@
 
 
 def mi_nombre():
+    """Reserva una función vacía para explicar el uso temporal de pass."""
     # pass conserva una función vacía mientras se define su contenido.
     pass

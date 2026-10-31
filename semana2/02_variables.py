@@ -39,6 +39,7 @@ variable = 60
 
 
 def funcion():
+    """Muestra que una variable local no modifica la variable global."""
     # Aquí `variable` es una variable LOCAL: nace con 30 y existe solo
     # mientras dura esta función. La `variable` de afuera no se toca.
     variable = 30
