@@ -5,3 +5,27 @@
 # Python
 __pycache__/
 *.py[cod]
+venv/
+.venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+build/
+dist/
+*.egg-info/
+
+# Credenciales locales (las plantillas sí se versionan)
+.env
+.env.*
+!.env.example
+
+# Herramientas y respaldo local del historial Git anidado
+.atl/
+.kilo/
+.local/
+.DS_Store
