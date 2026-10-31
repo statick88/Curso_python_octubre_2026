@@ -1,0 +1,313 @@
+# Especificación: Videojuego Tetris (Python + Tkinter) — ODD + RDD
+
+## Objetivo
+Crear una aplicación de escritorio de Tetris con estética hacker (tonos azules/cian), interfaz moderna y atractiva, con 3 niveles, 3 vidas y música de fondo.
+
+Este documento es la especificación funcional **y** el contrato de trabajo. El desarrollo se rige por **Organic Driven Development (ODD)** para la ejecución y por **Receipt-Driven Development (RDD)** para la revisión nativa de cambios de riesgo. No se usa SDD: no hay fases de especificación separadas de la implementación ni artefactos de plan que no estén respaldados por código y pruebas observadas.
+
+## Tecnologías a utilizar
+| Tecnología | Uso | Notas |
+|---|---|---|
+| `tkinter` (stdlib) | Ventana, layouts, eventos y `Canvas` | Núcleo de la aplicación. Usaremos `Canvas` para renderizar el tablero y las piezas. |
+| `customtkinter` | Componentes modernos y theming | Recomendado para darle ese aspecto "moderno" al HUD (marcadores, panel lateral, botones). |
+| `pygame.mixer` | Música de fondo y efectos de sonido | Ligero y sencillo para bucles de música y SFX (rotar, línea, game over). |
+| `typing` | Type hints | Para mantener código legible y mantenible. |
+| `pytest` | Pruebas del núcleo | Solo para desarrollo; la lógica debe poder probarse sin abrir una ventana. |
+
+> Nota: Lo ideal es usar `tkinter.Canvas` con el game loop mediante `root.after()` (evitando `while True` bloqueante) para mantener la UI responsiva.
+
+## Arquitectura
+Se recomienda seguir un enfoque orientado a objetos con separación de responsabilidades:
+
+| Módulo/Clase | Responsabilidad |
+|---|---|
+| `Game` | Controlador principal. Gestiona estados (jugando, pausado, game over), loop del juego, transiciones de nivel y vidas. |
+| `Board` | Modelo. Representa la matriz del tablero (10x20), colisiones, limpieza de líneas, y estado del grid. |
+| `Tetromino` | Modelo. Define las 7 piezas (I, J, L, O, S, T, Z), rotaciones, formas y colores. |
+| `Piece` | Instancia en movimiento (posición actual, rotación, tipo). |
+| `Renderer` | Vista. Dibuja tablero, pieza activa, "siguiente pieza", HUD usando `Canvas`. |
+| `InputHandler` | Control. Mapea teclas (flechas, espacio, P, R) a acciones. |
+| `AudioManager` | Audio. Carga y reproduce música de fondo en loop + efectos. |
+
+Regla de dependencia: `core/` no importa `ui/` ni `tkinter`. La vista lee estado del modelo; el modelo nunca conoce widgets.
+
+## Interfaz Gráfica (UI/UX)
+### Paleta de colores (estilo hacker)
+| Elemento | Color (HEX) | Uso |
+|---|---|---|
+| Fondo principal | `#000814` | Ventana/fondo general |
+| Grid / Tablero | `#001D3D` | Celdas vacías / líneas del grid |
+| Borde / Glow | `#00E0FF` / `#00FFFF` | Bordes, títulos, efectos neón cian |
+| Piezas (acento) | `#0099FF`, `#00BFFF`, `#33FFFF` | Diferentes tetrominos con tonos azules/cian |
+| Texto/HUD | `#E6FFFF` | Puntuación, nivel, vidas, "SIGUIENTE" |
+| Alerta/Game Over | `#FF3366` | Feedback de error/game over |
+
+### Layout
+Distribución con `grid()` para mantenerlo responsive y organizado:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                        TETRIS                           │
+├─────────────┬─────────────────────────┬─────────────────┤
+│   SIGUIENTE  │        TABLERO           │   HUD           │
+│   (Next)     │      (Canvas 10x20)      │  PUNTOS: XXX    │
+│              │                          │  NIVEL:  X/3    │
+│              │                          │  VIDAS:  X/3    │
+│              │                          │  CONTROLES      │
+└─────────────┴─────────────────────────┴─────────────────┘
+```
+
+- **Tablero**: `tkinter.Canvas` con celdas cuadradas. Renderizado por filas/columnas usando `create_rectangle`.
+- **Panel lateral**: `customtkinter.CTkFrame` con `CTkLabel` para HUD.
+- **Estilo**: Tipografía monoespaciada (`Consolas`, `Courier New`, `JetBrains Mono`).
+- **Feedback visual**: Highlight al limpiar línea, parpadeo al subir de nivel, overlay "PAUSA" / "GAME OVER".
+- **Textos exactos de la interfaz**: `TETRIS`, `SIGUIENTE`, `PUNTOS`, `NIVEL`, `VIDAS`, `LÍNEAS`, `PAUSA`, `GAME OVER`, `R PARA REINICIAR`.
+- **Controles mostrados**: `←/→ mover`, `↓ suave`, `ESPACIO caída`, `↑ rotar`, `P pausa`, `R reiniciar`.
+
+## Mecánicas del Juego
+| Mecánica | Descripción |
+|---|---|
+| Tetrominos | Las 7 piezas clásicas con sus rotaciones correctas. |
+| Movimiento | Izquierda/Derecha, bajar suave, caída rápida (hard drop), rotación. |
+| Colisiones | Detección con bordes del tablero y con piezas ya colocadas. |
+| Líneas completas | Al completar una fila se elimina y las superiores bajan. Sumar puntos. |
+| **Niveles** | **3 niveles**. La velocidad aumenta al subir de nivel (cada cierto número de líneas). |
+| **Vidas** | **3 vidas**. Al perder (pieza no cabe al spawn) se resta una vida. Al quedarse sin vidas -> Game Over definitivo. |
+| **Música de fondo** | Bucle continuo mientras se juega con `pygame.mixer`. |
+| Pausa | Tecla `P` para pausar/reanudar. |
+| Reinicio | Tecla `R` al Game Over para reiniciar partida. |
+
+Reglas numéricas cerradas:
+- Tablero: **10 columnas x 20 filas**.
+- Niveles: **1, 2 y 3**. Se sube de nivel cada **10 líneas**; el nivel 3 es el máximo.
+- Vidas: **3**. Perder una vida ocurre cuando la pieza recién generada no cabe en el tablero.
+- Al quedarse en **0 vidas** el estado es Game Over definitivo: no se puede reanudar con `P`, solo reiniciar con `R`.
+- La pausa congela el descenso automático y la música; reanudar la reanuda.
+- La caída rápida no atraviesa piezas: la pieza se fija en la posición más baja válida.
+
+## Sistema de Puntuación (sugerido)
+| Acción | Puntos |
+|---|---|
+| 1 línea | 100 * nivel |
+| 2 líneas | 300 * nivel |
+| 3 líneas | 500 * nivel |
+| 4 líneas (Tetris) | 800 * nivel |
+| Hard drop | +2 por celda caída |
+| Soft drop | +1 por celda |
+
+El multiplicador usa el **nivel activo antes** de aplicar la limpieza de líneas. El hard drop suma solo por las celdas realmente descendidas.
+
+## Estructura de Carpetas
+```
+proyecto/
+├── agents
+├── odd/
+│   └── tasks/
+│       └── tetris-odd-rdd.md
+├── assets/
+│   ├── sounds/
+│   │   ├── bg_music.ogg
+│   │   ├── move.wav
+│   │   ├── rotate.wav
+│   │   ├── line_clear.wav
+│   │   └── game_over.wav
+│   └── fonts/
+├── src/
+│   ├── main.py
+│   ├── core/
+│   │   ├── board.py
+│   │   ├── game.py
+│   │   ├── piece.py
+│   │   └── tetrominos.py
+│   ├── ui/
+│   │   ├── renderer.py
+│   │   ├── styles.py
+│   │   └── hud.py
+│   ├── utils/
+│   │   ├── audio.py
+│   │   └── constants.py
+│   └── config.py
+├── tests/
+├── requirements.txt
+└── requirements-dev.txt
+```
+
+## Buenas Prácticas de Desarrollo
+- **Game loop correcto**: Usar `root.after(delay, callback)`. Consultado en docs de Tkinter para evitar bloqueos.
+- **Separación UI/Lógica**: La lógica del juego no debe conocer widgets directamente.
+- **Constantes centralizadas**: Todos los valores configurables en un solo lugar.
+- **Type hints**: En todo el código.
+- **Rendimiento**: Redibujar solo lo necesario en el Canvas.
+- **Estilo consistente**: Seguir PEP 8.
+- **Audio tolerante a fallos**: si no hay dispositivo de audio o faltan archivos, el juego debe seguir funcionando en silencio y avisar una sola vez por consola.
+- **Sin atribución de IA**: los commits usan Conventional Commits y no incluyen `Co-Authored-By` ni menciones de asistentes.
+
+---
+
+## Flujo de trabajo obligatorio: ODD
+
+ODD es el workflow de ejecución de este proyecto. Se aplica a **cada** petición, sin que el usuario tenga que pedir un plan ni recordar el proceso. El protocolo es ordenado:
+
+### 1. Autorizar
+Establecer si la petición autoriza un cambio. Investigación, explicación, revisión y propuestas son solo lectura. Si la intención de cambio es ambigua, se hace **una** pregunta y se permanece en solo lectura.
+
+### 2. Explorar
+Leer el código y los requisitos existentes antes de proponer o escribir, en proporción a la petición. No se explora para releer archivos que se van a leer igualmente antes de escribir en línea.
+
+### 3. Resolver incertidumbre
+Investigación opcional solo ante una incertidumbre concreta. **Una** pregunta enfocada al usuario solo ante una decisión de producto real; después se detiene y espera. Como máximo un desafío de supuestos de solo lectura ante una premisa no probada de alto impacto.
+
+### 4. Clasificar tamaño
+Una tarea es **pequeña** cuando se cumplen las tres condiciones:
+1. **Entendida**: resultado y lugar del cambio conocidos, sin decisiones abiertas, demostrable con una lectura acotada.
+2. **Riesgo contenido**: no toca ningún elemento de alto riesgo.
+3. **Reanudable desde el diff**: si la sesión se corta, otra persona termina el trabajo solo con la petición original y `git diff`.
+
+El número de archivos, comandos, pruebas o correcciones **nunca** decide el tamaño. Una tarea es **grande** solo cuando falla la prueba de reanudación: varias sesiones, espera externa, entregables separados o requisitos que no sobreviven a una compactación.
+
+Las tareas pequeñas se ejecutan en línea y no crean artefactos de seguimiento. Las grandes crean documento de feature.
+
+**Alto riesgo** (una equivocación sería difícil de detectar, difícil de deshacer o alcanza más allá del cambio):
+1. Datos o efectos irreversibles: migraciones, cambios o borrados de datos existentes, cambios de formato persistido.
+2. Seguridad: autenticación, permisos, credenciales, secretos, guardas, sandbox.
+3. Contratos que otros consumen: API pública, flags de CLI, formatos de configuración, exports publicados.
+4. Concurrencia: bloqueos, carreras, orden asíncrono.
+5. Entrega o entorno: instaladores, release, CI, despliegue, dependencias.
+6. Ninguna prueba detectaría una regresión de lo que cambia.
+7. "No está claro" cuenta como alto solo si una lectura acotada no permite saber si aplican 1–5.
+
+Todo cambio de código se cierra con una línea `Risk: item N (motivo)` o `Risk: none`.
+
+### 5. Registrar antes de la primera escritura
+Para implementación grande autorizada se crea, sin pedir permiso:
+- `odd/tasks/<feature>.md` con encabezado (objetivo, rama, estrategia de entrega, runner), `## Specs` con `S1..Sn` citando **verbatim** los textos, comandos y valores del usuario, `## Tasks` con una línea por tarea (ID, `S#`, ruta, commit) y `## Log` al final, donde `L1` es la petición original literal.
+- Espejo en Engram bajo el tema `odd/<feature>/tasks`, con el documento completo y la ruta relativa.
+
+El documento es la especificación que leen los subagentes. Un cambio de requisito añade su entrada literal al Log, reescribe solo los `S#` afectados y reabre solo su tarea. Los hallazgos por sí solos no autorizan ampliar alcance.
+
+### 6. Implementar tarea por tarea
+- Handoff por referencia, nunca por paráfrasis: `Spec: odd/tasks/<feature>.md, T2, S3-S4`. El ejecutor lee hasta `## Log` y reporta qué `S#` cubrió.
+- Sin documento de feature, se incluye la petición del usuario literal.
+- Cada tarea se enruta con la topología más pequeña y útil (en línea por defecto). Los disparadores de delegación solo aplican cuando su condición se cumple de verdad.
+- Se marca una tarea como hecha solo después de observar su resultado y sus comprobaciones.
+- Unidades de trabajo revisables de ~400 líneas autorizadas (adiciones + borrados) como heurística de planificación, **no** como límite duro ni criterio de aceptación. Nunca se recortan pruebas, líneas en blanco ni comentarios para cumplirla.
+- Commits por unidad de trabajo en la rama de feature: pruebas y documentación junto al comportamiento, mensaje Conventional Commits, sin atribución de IA. Unidad cuyo `Risk` nombra un elemento de alto riesgo recibe commit propio.
+- `push`, creación de PR y merge son decisiones del usuario.
+
+### 7. Cerrar
+Reportar el resultado verificado, cada comprobación fallida/omitida/pendiente y el siguiente paso. Un cierre pendiente solo se justifica con parada explícita del usuario o con un único resultado **Necesita tu decisión** que nombre los bloqueos.
+
+### Política test-first (por defecto)
+Para cambios de comportamiento con una prueba determinista ejecutable y resultado esperado claro:
+1. **RED**: escribir una prueba por regla pedida y observar que falla por la razón correcta.
+2. **GREEN**: implementar lo mínimo que la hace pasar.
+3. **REFACTOR**: limpiar manteniendo la suite verde.
+
+Además:
+- Por cada comando u opción existente que el cambio toque, una prueba que demuestre que su comportamiento previo sigue igual.
+- Se cuenta como "tocado" cuando comparte el código modificado (opciones, parsers, helpers, validación).
+- Antes de terminar, **differential check**: ejecutar el comando existente con la entrada nueva contra el código base (copia en `mktemp -d`, nunca commiteada) y contra el cambio; comparar stdout, stderr y código de salida. Cualquier diferencia no pedida es regresión: se corrige y se fija con prueba.
+- Para documentación pasiva, runners no disponibles o ausencia de RED significativo, se explica la excepción y se ejecutan comprobaciones estructurales o funcionales proporcionales.
+- El estado temporal de pruebas (`TMPDIR`, `HOME`, cachés) vive fuera del worktree. Los subagentes reportan rutas exactas y el padre las elimina.
+
+### Verificación
+- **Disparador de verificación**: solo un cambio cuyo `Risk` nombra un elemento de alto riesgo recibe un verificador independiente tras sus propias comprobaciones. Un tier nativo, una evaluación fallida o el modelo que escribió el código **no** añaden verificador por sí mismos.
+- En el resto de casos, quien hizo el cambio ejecuta su prueba enfocada y la suite completa en línea, una vez cada una.
+- **Corrección acotada**: los bloqueos del verificador reciben un lote de corrección que arregla todos los reportados, luego una re-comprobación limitada a esos bloqueos. Nunca una nueva pasada completa.
+- El spot check del padre (reejecutar un comando reportado antes de entregar) se mantiene siempre.
+
+---
+
+## Flujo de trabajo obligatorio: RDD
+
+RDD es la revisión nativa de cambios y es **propiedad del usuario**. Se controla con:
+
+```
+gentle-ai review mode enable|disable|status
+```
+
+- Está **encendido por defecto** (opt-out). `status` es solo lectura e informa la fuente que decide.
+- Nunca se activa ni desactiva automáticamente, ni se persiste una preferencia por el hecho de que el default esté encendido.
+- Si el usuario pide dejar de usarlo, se ejecuta `disable` sin argumentar ni buscar alternativas.
+- Con RDD desactivado no se inician revisiones, no se reintenta y no se reactiva.
+
+### Ciclo por unidad de trabajo
+1. Tras cada commit de unidad de trabajo y con RDD activo:
+   ```
+   gentle-ai review assess --cwd <repo> --agent opencode \
+     --base-ref <última frontera revisada> --committed-only --json
+   ```
+2. Leer `review_due` y `review_due_reason`:
+   - `passive`: no requiere revisión; la frontera avanza.
+   - `under_budget`: queda pendiente en la rebanada hasta que un commit posterior alcance el presupuesto.
+   - `already_reviewed`: ese rango exacto ya está cubierto por autoridad terminal.
+   - `high_risk` (`review_due: true`): ejecutar literalmente el `next_transition.command` devuelto, añadiendo la selección de `--lenses`/`--lenses-reason`.
+   - Evaluación no disponible o fallida: **no** baja el tier; se trata el commit como debido y se ejecuta el preflight STATUS con `--base-ref <última frontera> --committed-only`.
+3. La primera frontera es el punto de ramificación; cada frontera revisada pasa a ser la base siguiente.
+4. Un commit de alto riesgo que sigue a commits `under_budget` cierra primero la rebanada abierta, para que el commit riesgoso se revise solo contra la nueva frontera.
+5. Se registra por commit el tier evaluado y el resultado: granted, declined, passive, under budget, already reviewed o unavailable.
+
+### Reglas de la revisión nativa
+- La revisión solo corre sobre el **candidato congelado** que devuelve el proveedor; nunca sobre el worktree vivo, el índice o `HEAD`.
+- El consentimiento es **por candidato**: RDD encendido permite revisar, jamás concede consentimiento para un candidato concreto. Una negativa es de ese candidato y no apaga el modo.
+- Los revisores, refutadores, correctores y validadores reciben únicamente su entrada emitida por el proveedor. No se reconstruyen comandos desde la prosa.
+- Como máximo **una corrección acotada** por candidato inmutable. No hay bucles "hasta que esté limpio".
+- Un captura vacía, malformada, inválida o incompleta no llega a acknowledgement: se consulta el STATUS del mismo linaje y solo se relanza si vuelve a ofrecer el mismo slot.
+- Tras un `approved` la autoridad ya está consumida: no se emite un STATUS final adicional.
+- **La revisión no autoriza entrega.** Commit, push, PR y release siguen la política ordinaria del repositorio.
+
+### Entrega
+Estrategia por defecto `ask-on-risk`. Si el pronóstico o el conteo acumulado de líneas autorizadas supera ~400, se pregunta **una vez** por la estrategia de cadena (`stacked-to-main` o `feature-branch-chain`) y se registran las fronteras de cada PR en el documento de feature. La revisión nativa corre sobre un commit de unidad de trabajo o una rebanada de PR, nunca sobre el checkbox de un TODO ni sobre la rama acumulada completa.
+
+---
+
+## Delegación
+Se delega solo cuando el disparador de la tarea lo exige, con la topología más pequeña posible:
+
+| Disparador | Condición | Acción |
+|---|---|---|
+| Evidencia | Decidir/verificar en línea | 1 lote paralelo, ≤3 llamadas, ~10k tokens |
+| Mapeo | Comprensión que excede ese lote o >5 búsquedas secuenciales | 1 explorador de solo lectura, handoff ≤2k tokens con `ruta:línea` |
+| Escritura | Unidades paralelas independientes o backstop de contexto | 1 escritor acotado por unidad, con `## Allowed edit surfaces` |
+| Verificación | `Risk` nombra un elemento de alto riesgo | 1 verificador independiente tras las comprobaciones propias |
+| Seguimiento | Tarea grande | Documento de feature, espejo en Engram, commits por unidad |
+
+Un escritor recibe superficies de edición exactas (rutas relativas o globs estrechos, nunca `.` ni rutas absolutas). Si la superficie no se puede derivar, no se lanza el escritor: se enumera el conjunto candidato y se presenta como elección aprobar/rechazar.
+
+---
+
+## Verificación y Definition of Done
+
+### Comandos
+```
+python -m pytest -q                 # suite completa
+python -m compileall -q src         # sintaxis/imports
+python -m src.main                  # smoke test manual de la ventana
+```
+
+### Criterios de aceptación
+Un cambio está terminado solo si:
+1. Los `S#` que declara cubrir tienen prueba o comprobación observada.
+2. `pytest` pasa completo y no se omitió ni desactivó ninguna prueba para lograrlo.
+3. `compileall` no reporta errores.
+4. El juego abre, responde a teclado y cierra sin excepciones en consola (smoke test).
+5. El documento de feature y su espejo en Engram reflejan el estado real.
+6. Cada commit de unidad registra su `Risk` y el resultado de `review assess`.
+7. La suite no deja artefactos ni cachés dentro del worktree sin ignorar.
+8. El README describe instalación, ejecución, controles y pruebas.
+
+### Lo que no es aceptable
+- Añadir dependencias no declaradas en `requirements*.txt`.
+- Silenciar excepciones para que la UI "funcione".
+- Duplicar lógica de tablero en la vista.
+- Commits gigantes con código, pruebas y documentación de varias unidades mezcladas.
+- Declarar una tarea hecha sin evidencia observada de RED/GREEN o de la comprobación equivalente.
+
+---
+
+## Requisitos
+- Python 3.10+ (entorno verificado del proyecto: Python 3.12 con Tk 9.1).
+- `pip install -r requirements.txt` (`customtkinter`, `pygame`).
+- `pip install -r requirements-dev.txt` para `pytest`.
+
+**Autor:** Diego Saavedra
