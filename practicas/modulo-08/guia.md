@@ -1,5 +1,7 @@
 # M8 · La fábrica de saludos: crea tu paquete
 
+> **Estado del repositorio:** `formato.py` contiene un ejemplo resuelto verificable; los otros archivos del paquete siguen siendo soporte docente. La guía describe el andamiaje original para una copia del estudiante.
+
 Reutiliza un catálogo docente desde un paquete y completa una función de formato.
 
 ## Objetivo y requisito

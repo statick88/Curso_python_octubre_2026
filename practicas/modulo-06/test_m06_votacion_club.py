@@ -9,12 +9,14 @@ from m06_votacion_club import candidatos_unicos, contar_votos, ganador
 
 class TestM06VotacionClub(unittest.TestCase):
     def llamar(self, funcion, *args):
+        """Ejecuta una función y captura resultado, salida y error."""
         salida, errores = io.StringIO(), io.StringIO()
         with redirect_stdout(salida), redirect_stderr(errores):
             resultado = funcion(*args)
         return resultado, salida.getvalue(), errores.getvalue()
 
     def test_contar_votos_cuenta_repetidos_y_no_modifica_lista(self):
+        """Verifica conteo de repetidos y conservación de los votos."""
         votos = ["Ana", "Luis", "Ana", "Mia"]
         original = votos[:]
         resultado, salida, errores = self.llamar(contar_votos, votos)
@@ -25,6 +27,7 @@ class TestM06VotacionClub(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_contar_votos_acepta_lista_vacia(self):
+        """Verifica el diccionario vacío para una lista vacía."""
         votos = []
         resultado, salida, errores = self.llamar(contar_votos, votos)
         self.assertIsNotNone(resultado, "contar_votos debe devolver un diccionario")
@@ -34,6 +37,7 @@ class TestM06VotacionClub(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_candidatos_unicos_elimina_duplicados_y_no_modifica_lista(self):
+        """Verifica el conjunto único sin mutar la lista de votos."""
         votos = ["Ana", "Luis", "Ana", "Mia"]
         original = votos[:]
         resultado, salida, errores = self.llamar(candidatos_unicos, votos)
@@ -45,6 +49,7 @@ class TestM06VotacionClub(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_candidatos_unicos_acepta_lista_vacia(self):
+        """Verifica el conjunto vacío para una lista vacía."""
         resultado, salida, errores = self.llamar(candidatos_unicos, [])
         self.assertIsNotNone(resultado, "candidatos_unicos debe devolver un set")
         self.assertIsInstance(resultado, set)
@@ -53,6 +58,7 @@ class TestM06VotacionClub(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_ganador_devuelve_maximo_unico_y_no_modifica_diccionario(self):
+        """Verifica ganador único y conservación del conteo."""
         conteo = {"Luis": 1, "Ana": 3, "Mia": 2}
         original = conteo.copy()
         resultado, salida, errores = self.llamar(ganador, conteo)
@@ -71,6 +77,7 @@ class TestM06VotacionClub(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_ganador_devuelve_none_para_empate_y_conteo_vacio(self):
+        """Verifica empate y ausencia de votos sin ganador."""
         unico, salida, errores = self.llamar(ganador, {"Ana": 2, "Luis": 1})
         self.assertIsNotNone(unico, "ganador debe resolver antes los máximos únicos")
         self.assertEqual("Ana", unico)

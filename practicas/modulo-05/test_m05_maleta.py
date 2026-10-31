@@ -9,12 +9,14 @@ from m05_maleta import invertir_itinerario, peso_total, seleccionar_livianos
 
 class TestM05Maleta(unittest.TestCase):
     def llamar(self, funcion, *args):
+        """Ejecuta una función y captura su resultado y salidas."""
         salida, errores = io.StringIO(), io.StringIO()
         with redirect_stdout(salida), redirect_stderr(errores):
             resultado = funcion(*args)
         return resultado, salida.getvalue(), errores.getvalue()
 
     def test_peso_total_suma_y_acepta_coleccion_vacia(self):
+        """Verifica suma, vacío y conservación de los pesos."""
         pesos = [1.2, 2.3, 0.5]
         resultado, salida, errores = self.llamar(peso_total, pesos)
         self.assertIsNotNone(resultado, "peso_total debe devolver un total")
@@ -40,6 +42,7 @@ class TestM05Maleta(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_seleccionar_livianos_incluye_igualdad_y_conserva_orden(self):
+        """Verifica igualdad con límite, orden y no mutación."""
         pesos = [5, 2, 5, 1]
         original = pesos[:]
         resultado, salida, errores = self.llamar(seleccionar_livianos, pesos, 5)
@@ -50,6 +53,7 @@ class TestM05Maleta(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_seleccionar_livianos_devuelve_lista_nueva_y_maneja_vacio(self):
+        """Verifica independencia de la lista resultado y entrada vacía."""
         pesos = [1, 4, 7]
         resultado, salida, errores = self.llamar(seleccionar_livianos, pesos, 4)
         self.assertIsNotNone(resultado, "seleccionar_livianos debe devolver una lista")
@@ -83,6 +87,7 @@ class TestM05Maleta(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_invertir_itinerario_devuelve_lista_invertida_sin_modificar_tupla(self):
+        """Verifica inversión en lista nueva sin cambiar la tupla."""
         paradas = ("Quito", "Ambato", "Loja")
         resultado, salida, errores = self.llamar(invertir_itinerario, paradas)
         self.assertIsNotNone(resultado, "invertir_itinerario debe devolver una lista")
@@ -93,6 +98,7 @@ class TestM05Maleta(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_invertir_itinerario_acepta_tupla_vacia_y_un_elemento(self):
+        """Verifica límites vacío y unitario del itinerario."""
         vacio, salida, errores = self.llamar(invertir_itinerario, ())
         self.assertIsNotNone(vacio, "invertir_itinerario debe devolver una lista")
         self.assertEqual([], vacio)

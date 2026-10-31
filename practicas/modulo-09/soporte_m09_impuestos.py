@@ -4,6 +4,7 @@ import math
 
 
 def _validar_no_negativo(valor):
+    """Rechaza valores no numéricos, no finitos, booleanos o negativos."""
     if (
         not isinstance(valor, (int, float))
         or isinstance(valor, bool)

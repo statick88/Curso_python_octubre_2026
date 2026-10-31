@@ -9,12 +9,14 @@ from m04_recibo_envio import calcular_envio, crear_recibo
 
 class TestM04ReciboEnvio(unittest.TestCase):
     def llamar(self, funcion, *args, **kwargs):
+        """Ejecuta una función y devuelve su resultado junto con ambas salidas."""
         salida, errores = io.StringIO(), io.StringIO()
         with redirect_stdout(salida), redirect_stderr(errores):
             resultado = funcion(*args, **kwargs)
         return resultado, salida.getvalue(), errores.getvalue()
 
     def test_calcular_envio_usa_tarifa_predeterminada_y_redondea(self):
+        """Verifica tarifa predeterminada y redondeo de envío."""
         resultado, salida, errores = self.llamar(calcular_envio, 2.5)
         self.assertIsNotNone(resultado, "calcular_envio debe devolver un costo")
         self.assertEqual(7.5, resultado)
@@ -28,6 +30,7 @@ class TestM04ReciboEnvio(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_calcular_envio_admite_argumentos_posicionales_y_por_nombre(self):
+        """Verifica llamadas posicionales, nombradas y tarifa cero."""
         posicional, salida, errores = self.llamar(calcular_envio, 2.5, 4)
         self.assertIsNotNone(posicional, "calcular_envio debe devolver un costo")
         self.assertEqual(10.0, posicional)
@@ -49,6 +52,7 @@ class TestM04ReciboEnvio(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_calcular_envio_acepta_peso_cero(self):
+        """Verifica el costo cero para un peso nulo válido."""
         resultado, salida, errores = self.llamar(calcular_envio, 0)
         self.assertIsNotNone(resultado, "calcular_envio debe devolver un costo")
         self.assertEqual(0.0, resultado)
@@ -56,6 +60,7 @@ class TestM04ReciboEnvio(unittest.TestCase):
         self.assertEqual("", errores)
 
     def test_crear_recibo_compone_costo_y_formato_exacto(self):
+        """Verifica composición del recibo y formato monetario exacto."""
         recibo, salida, errores = self.llamar(crear_recibo, "Loja", 2.5)
         self.assertIsNotNone(recibo, "crear_recibo debe devolver un recibo")
         self.assertEqual("Envío a Loja: $7.50", recibo)

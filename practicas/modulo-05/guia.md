@@ -1,5 +1,7 @@
 # M5 · La maleta inteligente: prepara tu aventura
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Organizarás pesos y paradas sin cambiar los datos originales. Edita solo `practicas/modulo-05/m05_maleta.py` y sigue los TODO numerados.
 
 ## Objetivo

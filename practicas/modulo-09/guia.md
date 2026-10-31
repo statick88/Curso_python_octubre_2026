@@ -1,5 +1,7 @@
 # M9 · Cazadores de errores: prueba los impuestos
 
+> **Estado del repositorio:** `m09_pruebas_impuesto.py` contiene una suite resuelta verificable; `soporte_m09_impuestos.py` sigue siendo el sujeto docente de prueba. La guía describe el andamiaje original para una copia del estudiante.
+
 Aquí tu producto es una suite `unittest`: las funciones de impuestos son soporte docente, no una solución que debas reescribir.
 
 ## Objetivo y requisito

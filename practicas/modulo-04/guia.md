@@ -1,5 +1,7 @@
 # M4 · Entrega especial: crea tu recibo de envío
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Construirás dos funciones que calculan un envío y presentan su recibo. El archivo que editas es `practicas/modulo-04/m04_recibo_envio.py`; no escribas un programa que pida datos ni imprimas resultados.
 
 ## Objetivo

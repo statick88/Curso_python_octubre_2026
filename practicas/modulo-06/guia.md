@@ -1,5 +1,7 @@
 # M6 · ¡Tu voto cuenta! Elige al representante
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Analizarás una lista de votos para contar candidatos, eliminar repetidos y decidir si existe un ganador único. Edita `practicas/modulo-06/m06_votacion_club.py` siguiendo los TODO numerados.
 
 ## Objetivo
