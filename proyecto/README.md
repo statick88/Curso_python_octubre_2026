@@ -21,7 +21,7 @@ python3 -m pip install -r requirements.txt
 python3 -m src.main
 ```
 
-La demostración gráfica requiere `customtkinter`, `pygame-ce` y una sesión de escritorio. No se instala ninguna dependencia ni se valida manualmente la GUI como parte de las pruebas automáticas.
+La demostración gráfica requiere `customtkinter`, `pygame-ce` y una sesión de escritorio. Si el mezclador no encuentra un dispositivo de audio, el juego continúa sin música ni efectos; con un dispositivo disponible, inicia la música de fondo al comenzar. No se instala ninguna dependencia ni se valida manualmente la GUI como parte de las pruebas automáticas.
 
 ## Controles
 

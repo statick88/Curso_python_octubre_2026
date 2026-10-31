@@ -91,5 +91,58 @@ class TestLogicaPuraDelTetrisLegado(unittest.TestCase):
         self.assertTrue(datos["fila_superior_vacia"])
 
 
+class TestAudioOpcionalDelTetrisLegado(unittest.TestCase):
+    """Comprueba que el audio no bloquee la partida y conserve su API pública."""
+
+    def test_audio_no_interrumpe_sin_dispositivo_y_conserva_efectos_normales(self) -> None:
+        """Mantiene controles inofensivos sin mezclador y efectos al haberlo."""
+        sin_dispositivo = ejecutar_logica(
+            "import json, sys, types; "
+            "mixer = types.SimpleNamespace(init=lambda: (_ for _ in ()).throw(RuntimeError('sin dispositivo'))); "
+            "sys.modules['pygame'] = types.SimpleNamespace(mixer=mixer); "
+            "sys.path.insert(0, 'proyecto'); from src.utils import audio; "
+            "audio.os.path.exists = lambda ruta: True; gestor = audio.AudioManager(); "
+            "gestor.play_music('musica.ogg'); gestor.stop_music(); gestor.pause_music(); "
+            "gestor.unpause_music(); gestor.play_sound('efecto.wav'); "
+            "print(json.dumps({'reproduciendo': gestor.music_playing}))"
+        )
+        self.assertFalse(sin_dispositivo["reproduciendo"])
+
+        con_dispositivo = ejecutar_logica(
+            "import json, sys, types; llamadas = []; "
+            "musica = types.SimpleNamespace(load=lambda ruta: llamadas.append(('load', ruta)), "
+            "set_volume=lambda volumen: llamadas.append(('music_volume', volumen)), "
+            "play=lambda bucle: llamadas.append(('play', bucle)), stop=lambda: llamadas.append(('stop',)), "
+            "pause=lambda: llamadas.append(('pause',)), unpause=lambda: llamadas.append(('unpause',))); "
+            "sonido = types.SimpleNamespace(set_volume=lambda volumen: llamadas.append(('sound_volume', volumen)), "
+            "play=lambda: llamadas.append(('sound_play',))); "
+            "mixer = types.SimpleNamespace(init=lambda: llamadas.append(('init',)), music=musica, "
+            "Sound=lambda ruta: llamadas.append(('sound', ruta)) or sonido); "
+            "sys.modules['pygame'] = types.SimpleNamespace(mixer=mixer); sys.path.insert(0, 'proyecto'); "
+            "from src.utils import audio; audio.os.path.exists = lambda ruta: True; gestor = audio.AudioManager(); "
+            "gestor.play_music('musica.ogg'); gestor.pause_music(); gestor.unpause_music(); gestor.stop_music(); "
+            "gestor.play_sound('efecto.wav'); print(json.dumps({'llamadas': llamadas, 'reproduciendo': gestor.music_playing}))"
+        )
+        self.assertEqual(con_dispositivo["llamadas"], [
+            ["init"], ["load", "musica.ogg"], ["music_volume", 0.5], ["play", -1],
+            ["pause"], ["unpause"], ["stop"], ["sound", "efecto.wav"],
+            ["sound_volume", 0.7], ["sound_play"],
+        ])
+        self.assertFalse(con_dispositivo["reproduciendo"])
+
+    def test_inicio_normal_solicita_musica_de_fondo_una_vez(self) -> None:
+        """Inicia una sola vez la música mediante el administrador existente."""
+        datos = ejecutar_logica(
+            "import json, sys, types; exec(\"class Widget:\\n def __init__(self, *args, **kwargs): pass\\n def grid(self, *args, **kwargs): pass\\n def pack(self, *args, **kwargs): pass\\n def configure(self, *args, **kwargs): pass\\nclass Root:\\n def title(self, *args): pass\\n def configure(self, **kwargs): pass\\n def resizable(self, *args): pass\\n def bind(self, *args): pass\\n def after(self, *args): pass\\nclass Audio:\\n llamadas = []\\n def __init__(self): pass\\n def play_music(self, ruta): self.llamadas.append(ruta)\"); "
+            "sys.modules['tkinter'] = types.SimpleNamespace(Canvas=Widget); "
+            "sys.modules['customtkinter'] = types.SimpleNamespace(CTkLabel=Widget, CTkFrame=Widget); "
+            "sys.modules['src.utils.audio'] = types.SimpleNamespace(AudioManager=Audio); "
+            "sys.modules['src.ui.renderer'] = types.SimpleNamespace(Renderer=type('Renderer', (), {'__init__': lambda self, canvas: None, 'clear': lambda self: None, 'draw_grid': lambda self: None, 'draw_board': lambda self, grid: None, 'draw_piece': lambda self, shape, position, color: None})); "
+            "sys.path.insert(0, 'proyecto'); from src.main import TetrisGame; TetrisGame(Root()); "
+            "print(json.dumps({'llamadas': Audio.llamadas}))"
+        )
+        self.assertEqual(datos["llamadas"], ["assets/sounds/bg_music.ogg"])
+
+
 if __name__ == "__main__":
     unittest.main()

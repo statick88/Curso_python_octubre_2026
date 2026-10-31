@@ -21,6 +21,7 @@ class TetrisGame:
         self.board = Board()
         self.renderer = None
         self.audio = AudioManager()
+        self.audio.play_music("assets/sounds/bg_music.ogg")
 
         # Estado del juego
         self.score = 0
