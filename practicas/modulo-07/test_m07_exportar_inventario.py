@@ -12,9 +12,11 @@ from m07_exportar_inventario import exportar_inventario
 
 class TestM07ExportarInventario(unittest.TestCase):
     def escribir(self, ruta, contenido):
+        """Escribe un fixture CSV UTF-8 sin normalizar sus saltos de línea."""
         ruta.write_text(contenido, encoding="utf-8", newline="")
 
     def llamar_sin_salida(self, funcion, *args):
+        """Ejecuta una función y exige comunicación por retorno silencioso."""
         salida, errores = io.StringIO(), io.StringIO()
         with redirect_stdout(salida), redirect_stderr(errores):
             resultado = funcion(*args)
@@ -23,6 +25,7 @@ class TestM07ExportarInventario(unittest.TestCase):
         return resultado
 
     def test_exporta_filas_validas_en_orden_y_con_enteros(self):
+        """Verifica JSON ordenado, enteros y origen sin cambios."""
         with tempfile.TemporaryDirectory() as temporal:
             base = Path(temporal)
             origen, destino = base / "inventario.csv", base / "reporte.json"
@@ -41,6 +44,7 @@ class TestM07ExportarInventario(unittest.TestCase):
             self.assertEqual(origen.read_bytes(), original)
 
     def test_encabezado_sin_filas_crea_lista_vacia(self):
+        """Verifica la exportación vacía para un CSV con solo encabezado."""
         with tempfile.TemporaryDirectory() as temporal:
             base = Path(temporal)
             origen, destino = base / "vacio.csv", base / "vacio.json"
@@ -53,6 +57,7 @@ class TestM07ExportarInventario(unittest.TestCase):
             self.assertEqual(origen.read_bytes(), original)
 
     def test_origen_ausente_no_crea_salida_ni_emite_salida(self):
+        """Verifica ausencia del origen sin salida ni destino nuevo."""
         with tempfile.TemporaryDirectory() as temporal:
             base = Path(temporal)
             destino = base / "no_debe_existir.json"
@@ -68,6 +73,7 @@ class TestM07ExportarInventario(unittest.TestCase):
             self.assertFalse(destino.exists())
 
     def test_csv_malformado_eleva_valueerror_y_no_crea_salida(self):
+        """Verifica rechazo silencioso de encabezados y filas inválidas."""
         casos = (
             "producto,cantidad\na,1\n",
             "nombre,cantidad\n,2\n",
@@ -96,6 +102,7 @@ class TestM07ExportarInventario(unittest.TestCase):
                 self.assertEqual(origen.read_bytes(), original)
 
     def test_destino_existente_permanece_identico_y_no_muta_origen(self):
+        """Verifica protección de sobrescritura y bytes de ambos archivos."""
         with tempfile.TemporaryDirectory() as temporal:
             base = Path(temporal)
             origen, destino = base / "inventario.csv", base / "reporte.json"

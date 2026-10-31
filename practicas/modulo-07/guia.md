@@ -1,5 +1,7 @@
 # M7 · Misión inventario: del CSV al JSON
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Convierte un CSV sintético de inventario en un JSON nuevo y protegido contra sobrescrituras.
 
 ## Objetivo y requisito
@@ -13,6 +15,12 @@ Convierte un CSV sintético de inventario en un JSON nuevo y protegido contra so
 1. Edita solo `practicas/modulo-07/m07_exportar_inventario.py`; `test_m07_exportar_inventario.py` es del docente.
 2. Implementa `exportar_inventario(origen_csv, destino_json)`.
 3. Desde la raíz del repositorio ejecuta `python3 -m unittest discover -s practicas/modulo-07 -p 'test_m07_exportar_inventario.py' -v`.
+
+La regresión adicional de una fila con columna extra no forma parte del conteo docente; ejecútala explícitamente desde la raíz con:
+
+```bash
+python3 practicas/modulo-07/regression_m07.py -v
+```
 
 El CSV tiene exactamente `nombre,cantidad`: nombre no vacío y cantidad entera mayor o igual que cero. Devuelve el número de filas y conserva el orden; un archivo con solo encabezado genera `[]` y devuelve `0`. Un origen ausente genera `FileNotFoundError`, una fila o encabezado inválido `ValueError` y un destino existente `FileExistsError`. No crees salida al rechazar datos ni modifiques origen o destino existente.
 

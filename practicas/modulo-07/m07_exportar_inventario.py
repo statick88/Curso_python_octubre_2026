@@ -1,16 +1,39 @@
-"""Práctica M07: exportación segura de un inventario CSV a JSON.
+"""Ejemplo resuelto de exportación segura de inventario CSV a JSON."""
 
-Completa únicamente el cuerpo de ``exportar_inventario``. No sobrescribas un
-reporte existente y conserva el CSV de entrada sin cambios.
-"""
+import csv
+import json
+from pathlib import Path
 
 
 def exportar_inventario(origen_csv, destino_json):
-    """Exporta filas válidas ``nombre,cantidad`` y devuelve cuántas escribió.
+    """Valida un CSV y crea un JSON nuevo, devolviendo el número de filas.
 
-    Debe usar CSV y JSON UTF-8. Una fila inválida debe producir ``ValueError``.
+    No crea ni modifica el destino cuando el origen o alguna fila es inválida,
+    y rechaza explícitamente sobrescribir un reporte existente.
     """
-    # TODO 1: abre y valida el CSV con csv.DictReader.
-    # TODO 2: crea una lista ordenada de diccionarios con cantidad entera.
-    # TODO 3: escribe JSON solamente si destino_json aún no existe.
-    return
+    origen = Path(origen_csv)
+    destino = Path(destino_json)
+    inventario = []
+
+    with origen.open("r", encoding="utf-8", newline="") as archivo:
+        lector = csv.DictReader(archivo)
+        if lector.fieldnames != ["nombre", "cantidad"]:
+            raise ValueError("el CSV debe tener encabezado nombre,cantidad")
+        for fila in lector:
+            nombre = fila.get("nombre")
+            cantidad_texto = fila.get("cantidad")
+            if set(fila) != {"nombre", "cantidad"} or not nombre or cantidad_texto is None:
+                raise ValueError("cada fila debe incluir nombre y cantidad")
+            try:
+                cantidad = int(cantidad_texto)
+            except ValueError as error:
+                raise ValueError("cantidad debe ser un entero no negativo") from error
+            if cantidad < 0:
+                raise ValueError("cantidad debe ser un entero no negativo")
+            inventario.append({"nombre": nombre, "cantidad": cantidad})
+
+    if destino.exists():
+        raise FileExistsError(destino)
+    with destino.open("x", encoding="utf-8") as archivo:
+        json.dump(inventario, archivo, ensure_ascii=False)
+    return len(inventario)
