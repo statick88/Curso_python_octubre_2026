@@ -1,0 +1,134 @@
+# Especificación: Videojuego Tetris (Python + Tkinter)
+
+## Objetivo
+Crear una aplicación de escritorio de Tetris con estética hacker (tonos azules/cian), interfaz moderna y atractiva, con 3 niveles, 3 vidas y música de fondo.
+
+## Tecnologías a utilizar
+| Tecnología | Uso | Notas |
+|---|---|---|
+| `tkinter` (stdlib) | Ventana, layouts, eventos y `Canvas` | Núcleo de la aplicación. Usaremos `Canvas` para renderizar el tablero y las piezas. |
+| `customtkinter` | Componentes modernos y theming | Recomendado para darle ese aspecto "moderno" al HUD (marcadores, panel lateral, botones). |
+| `pygame.mixer` | Música de fondo y efectos de sonido | Ligero y sencillo para bucles de música y SFX (rotar, línea, game over). |
+| `typing` | Type hints | Para mantener código legible y mantenible. |
+
+> Nota: Lo ideal es usar `tkinter.Canvas` con el game loop mediante `root.after()` (evitando `while True` bloqueante) para mantener la UI responsiva.
+
+## Arquitectura
+Se recomienda seguir un enfoque orientado a objetos con separación de responsabilidades:
+
+| Módulo/Clase | Responsabilidad |
+|---|---|
+| `Game` | Controlador principal. Gestiona estados (jugando, pausado, game over), loop del juego, transiciones de nivel y vidas. |
+| `Board` | Modelo. Representa la matriz del tablero (10x20), colisiones, limpieza de líneas, y estado del grid. |
+| `Tetromino` | Modelo. Define las 7 piezas (I, J, L, O, S, T, Z), rotaciones, formas y colores. |
+| `Piece` | Instancia en movimiento (posición actual, rotación, tipo). |
+| `Renderer` | Vista. Dibuja tablero, pieza activa, "siguiente pieza", HUD usando `Canvas`. |
+| `InputHandler` | Control. Mapea teclas (flechas, espacio, P, R) a acciones. |
+| `AudioManager` | Audio. Carga y reproduce música de fondo en loop + efectos. |
+
+## Interfaz Gráfica (UI/UX)
+### Paleta de colores (estilo hacker)
+| Elemento | Color (HEX) | Uso |
+|---|---|---|
+| Fondo principal | `#000814` | Ventana/fondo general |
+| Grid / Tablero | `#001D3D` | Celdas vacías / líneas del grid |
+| Borde / Glow | `#00E0FF` / `#00FFFF` | Bordes, títulos, efectos neón cian |
+| Piezas (acento) | `#0099FF`, `#00BFFF`, `#33FFFF` | Diferentes tetrominos con tonos azules/cian |
+| Texto/HUD | `#E6FFFF` | Puntuación, nivel, vidas, "SIGUIENTE" |
+| Alerta/Game Over | `#FF3366` | Feedback de error/game over |
+
+### Layout
+Distribución con `grid()` para mantenerlo responsive y organizado:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                        TETRIS                           │
+├─────────────┬─────────────────────────┬─────────────────┤
+│   SIGUIENTE  │        TABLERO           │   HUD           │
+│   (Next)     │      (Canvas 10x20)      │  PUNTOS: XXX    │
+│              │                          │  NIVEL:  X/3    │
+│              │                          │  VIDAS:  X/3    │
+│              │                          │  CONTROLES      │
+└─────────────┴─────────────────────────┴─────────────────┘
+```
+
+- **Tablero**: `tkinter.Canvas` con celdas cuadradas. Renderizado por filas/columnas usando `create_rectangle`.
+- **Panel lateral**: `customtkinter.CTkFrame` con `CTkLabel` para HUD.
+- **Estilo**: Tipografía monoespaciada (`Consolas`, `Courier New`, `JetBrains Mono`).
+- **Feedback visual**: Highlight al limpiar línea, parpadeo al subir de nivel, overlay "PAUSA" / "GAME OVER".
+
+## Mecánicas del Juego
+| Mecánica | Descripción |
+|---|---|
+| Tetrominos | Las 7 piezas clásicas con sus rotaciones correctas. |
+| Movimiento | Izquierda/Derecha, bajar suave, caída rápida (hard drop), rotación. |
+| Colisiones | Detección con bordes del tablero y con piezas ya colocadas. |
+| Líneas completas | Al completar una fila se elimina y las superiores bajan. Sumar puntos. |
+| **Niveles** | **3 niveles**. La velocidad aumenta al subir de nivel (cada cierto número de líneas). |
+| **Vidas** | **3 vidas**. Al perder (pieza no cabe al spawn) se resta una vida. Al quedarse sin vidas -> Game Over definitivo. |
+| **Música de fondo** | Bucle continuo mientras se juega con `pygame.mixer`. |
+| Pausa | Tecla `P` para pausar/reanudar. |
+| Reinicio | Tecla `R` al Game Over para reiniciar partida. |
+
+## Sistema de Puntuación (sugerido)
+| Acción | Puntos |
+|---|---|
+| 1 línea | 100 * nivel |
+| 2 líneas | 300 * nivel |
+| 3 líneas | 500 * nivel |
+| 4 líneas (Tetris) | 800 * nivel |
+| Hard drop | +2 por celda caída |
+| Soft drop | +1 por celda |
+
+## Estructura de Carpetas
+```
+proyecto/
+├── agents
+├── assets/
+│   ├── sounds/
+│   │   ├── bg_music.ogg
+│   │   ├── move.wav
+│   │   ├── rotate.wav
+│   │   ├── line_clear.wav
+│   │   └── game_over.wav
+│   └── fonts/
+├── src/
+│   ├── main.py
+│   ├── core/
+│   │   ├── board.py
+│   │   ├── game.py
+│   │   ├── piece.py
+│   │   └── tetrominos.py
+│   ├── ui/
+│   │   ├── renderer.py
+│   │   ├── styles.py
+│   │   └── hud.py
+│   ├── utils/
+│   │   ├── audio.py
+│   │   └── constants.py
+│   └── config.py
+└── requirements.txt
+```
+
+## Buenas Prácticas de Desarrollo
+- **Game loop correcto**: Usar `root.after(delay, callback)`. Consultado en docs de Tkinter para evitar bloqueos.
+- **Separación UI/Lógica**: La lógica del juego no debe conocer widgets directamente.
+- **Constantes centralizadas**: Todos los valores configurables en un solo lugar.
+- **Type hints**: En todo el código.
+- **Rendimiento**: Redibujar solo lo necesario en el Canvas.
+- **Estilo consistente**: Seguir PEP 8.
+
+## Plan de Implementación
+1. **Infraestructura** - Estructura, dependencias, ventana base
+2. **Tablero y Piezas** - Lógica core sin UI completa
+3. **UI y Renderizado** - Canvas + CustomTkinter con tema hacker
+4. **Input y Game Loop** - Controles y loop con `after()`
+5. **Niveles, Vidas y Puntuación** - Mecánicas requeridas
+6. **Audio** - Música de fondo con pygame.mixer
+7. **Pulido y QA** - Ajustes finales
+
+## Requisitos
+- Python 3.10+
+- `pip install customtkinter pygame`
+
+**Autor:** Diego Saavedra
