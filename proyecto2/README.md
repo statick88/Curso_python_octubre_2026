@@ -21,23 +21,29 @@ renderiza su estado con Tkinter.
 ## Dependencias
 
 - Python 3.10 o superior con `tkinter` disponible para ejecutar la interfaz.
-  La comprobación local se realizó con `../.venv/bin/python` (Python 3.12.16 y
-  Tk 9.1). El Python del sistema 3.15 no dispone de `_tkinter` utilizable aquí.
+  La comprobación local se realizó con Python 3.12.16 y Tk 9.1. El Python del
+  sistema 3.15 no dispone de `_tkinter` utilizable aquí: elige un intérprete
+  con Tk funcional para crear el entorno (por ejemplo, `python3.12`).
 - `customtkinter` y `pygame`, declarados en `requirements.txt`.
 - `pytest`, declarado en `requirements-dev.txt`, para la suite completa.
 
-Instalación en un entorno virtual propio:
+Desde la raíz del repositorio, entra en el miniproyecto y crea su entorno
+propio. Sustituye `python3` por tu intérprete con Tk si es necesario:
 
 ```bash
-python -m venv .venv
+cd proyecto2
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
 ```
 
 ## Ejecución
 
+Permanece en `proyecto2/` con el entorno anterior activado. Todos los comandos
+siguientes usan ese mismo entorno, no uno en la carpeta padre.
+
 ```bash
-../.venv/bin/python src/main.py
+python src/main.py
 ```
 
 Controles: `←`/`→` mover, `↓` caída suave, `↑` rotar, `ESPACIO` caída rápida,
@@ -49,8 +55,8 @@ La lógica y los fakes de audio/Canvas son deterministas y no requieren abrir
 una ventana ni disponer de audio:
 
 ```bash
-../.venv/bin/python -m pytest -q
-../.venv/bin/python -m compileall -q src
+python -m pytest -q
+python -m compileall -q src
 ```
 
 Si el entorno no tiene pytest, puede comprobarse el nuevo conjunto aislado con

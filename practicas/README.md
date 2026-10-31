@@ -1,6 +1,6 @@
 # Misiones Python: aprende practicando
 
-Cada actividad es independiente: completa sus comentarios `TODO` o marcadores y ejecuta únicamente la prueba de ese módulo. No necesitas terminar archivos anteriores para importar la práctica siguiente. Disponer de una actividad no significa que sus temas ya se hayan impartido o dominado.
+Cada actividad es independiente y este repositorio incluye ejemplos resueltos verificables para M0–M10 y la feria. Las guías conservan el flujo del andamiaje original: en una entrega estudiantil se parte de esa plantilla en una copia propia y se ejecuta únicamente la prueba del módulo. No necesitas terminar archivos anteriores para importar la práctica siguiente. Disponer de una actividad o de un ejemplo resuelto no significa que sus temas ya se hayan impartido o dominado.
 
 Usa Python 3 y su biblioteca estándar, sin instalar paquetes. Consulta también el [catálogo del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html): explica qué repasar, qué revisar y qué evidencia entregar.
 
@@ -8,7 +8,7 @@ Usa Python 3 y su biblioteca estándar, sin instalar paquetes. Consulta también
 
 Cada módulo tiene su carpeta `practicas/modulo-NN/`, con el archivo de trabajo, las pruebas y `guia.md`. La tabla muestra nombres breves; sus enlaces incluyen la carpeta completa. Ejecuta los comandos desde la **raíz del repositorio**, sin cambiar de directorio entre módulos.
 
-| Módulo | Artefacto que editas | Prueba docente | Instrucciones |
+| Módulo | Ejemplo resuelto | Prueba docente | Instrucciones |
 | --- | --- | --- | --- |
 | M0 · Misión excursión: planifica la aventura | [m00_planificador.md](modulo-00/m00_planificador.md) | [test_m00_planificador.py](modulo-00/test_m00_planificador.py) | [Guía M0](modulo-00/guia.md) |
 | M1 · ¡Hola, equipo! Tu tarjeta de presentación | [m01_tarjeta_presentacion.py](modulo-01/m01_tarjeta_presentacion.py) | [test_m01_tarjeta_presentacion.py](modulo-01/test_m01_tarjeta_presentacion.py) | [Guía M1](modulo-01/guia.md) |
@@ -32,7 +32,7 @@ Ejemplo para M5; cada guía contiene su comando exacto:
 python3 -m unittest discover -s practicas/modulo-05 -p 'test_m05_maleta.py' -v
 ```
 
-La plantilla inicial debe dar **FAIL por aserciones**, no errores de importación o sintaxis ni pruebas omitidas. Tras completar el artefacto, su suite debe dar `OK`. No cambies pruebas docentes para conseguirlo; en M9, el archivo estudiantil de pruebas sí es tu producto.
+Los ejemplos incluidos deben dar `OK`; las pruebas docentes no se cambian para conseguirlo. En el andamiaje original, la plantilla inicial da **FAIL por aserciones**, no errores de importación o sintaxis ni pruebas omitidas. En M9, el archivo estudiantil de pruebas es el producto del ejercicio.
 
 Para revisar todos los módulos nuevos:
 
@@ -60,10 +60,7 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 
 ## La feria del sabor: tu puesto de snacks
 
-Construirás, por etapas, tres funciones de un puesto de snacks. Cada etapa tiene
-su propio archivo: sigue los comentarios `TODO`, ejecuta su prueba docente y
-mejora tu código hasta que pase. No hay una solución entregada: el resultado se
-verifica por el comportamiento público.
+El repositorio incluye, por etapas, tres funciones resueltas de un puesto de snacks. Cada etapa tiene su propio archivo y prueba docente; el resultado se verifica por el comportamiento público. Para realizar la actividad original, empieza desde una copia del andamiaje y completa los pasos indicados en esta guía.
 
 **Duración estimada:** 90 minutos.
 
@@ -96,8 +93,7 @@ Desde la raíz del repositorio, comprueba Python:
 python3 --version
 ```
 
-Al comienzo las pruebas deben mostrar **FAIL** por aserciones: las funciones
-tienen un `return` provisional sin valor (devuelve `None`) que debes completar.
+En el andamiaje original las pruebas muestran **FAIL** por aserciones porque las funciones tienen un `return` provisional sin valor (`None`). Los ejemplos incluidos en este repositorio ya pasan esas comprobaciones.
 El filtro de esta actividad selecciona 12 pruebas docentes, sin errores de
 importación o sintaxis ni pruebas omitidas. Algunos tests tienen subcasos, por lo que el número de fallos
 puede ser mayor que 12.

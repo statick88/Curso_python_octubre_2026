@@ -13,6 +13,7 @@ COUNTS = (4, 3, 5, 5, 4, 5, 6, 5, 3, 1, 5)
 
 class TestPracticeDiscovery(unittest.TestCase):
     def comprobar_comando(self, cantidad, *argumentos):
+        """Comprueba cantidad, salida y estado de un descubrimiento independiente."""
         resultado = subprocess.run(
             [sys.executable, "-m", "unittest", "discover", *argumentos, "-v"],
             cwd=ROOT,
@@ -32,16 +33,19 @@ class TestPracticeDiscovery(unittest.TestCase):
         self.assertEqual(resultado.returncode, esperado)
 
     def test_descubrimiento_global_y_modulos(self):
+        """Conserva los conteos globales y de módulos de las pruebas docentes."""
         for patron, cantidad in (("test_*.py", 58), ("test_m*.py", 46)):
             with self.subTest(patron=patron):
                 self.comprobar_comando(cantidad, "-s", "practicas", "-p", patron)
 
     def test_selector_heredado_conserva_doce_pruebas(self):
+        """Verifica que la selección de feria conserva sus doce pruebas."""
         self.comprobar_comando(
             12, "-s", "practicas", "-p", "test_*.py", "-k", "TestEtapa"
         )
 
     def test_cada_modulo_tiene_un_comando_independiente(self):
+        """Ejecuta cada módulo sin depender de las prácticas de los demás."""
         for modulo, cantidad in enumerate(COUNTS):
             with self.subTest(modulo=modulo):
                 self.comprobar_comando(

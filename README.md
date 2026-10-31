@@ -1,12 +1,24 @@
 # Curso de Python
 
-Material introductorio organizado por semanas. Cada archivo es un ejemplo independiente: ejecútalo desde la raíz del repositorio con `python3 ruta/al/archivo.py`.
+Ejemplos semanales, prácticas resueltas y miniproyectos del curso, reunidos en **un solo repositorio**. Los scripts semanales se ejecutan desde la raíz con `python3 ruta/al/archivo.py`; cada miniproyecto conserva sus dependencias e instrucciones propias.
 
-> Los 18 ejemplos existentes conservan su comportamiento. `practicas/` contiene once prácticas ABP independientes para M0–M10 y conserva las tres etapas de snacks, sin entregar soluciones.
+## Organización
+
+| Carpeta | Contenido | Guía |
+| --- | --- | --- |
+| `semana1/` | Primeros programas, comparaciones y FizzBuzz | Índice inferior |
+| `semana2/` | Tipos, colecciones, control, funciones y excepciones | Índice inferior |
+| `semana3/` | POO, herencia, encapsulamiento, polimorfismo, módulos y paquetes | [Semana 3](semana3/README.md) |
+| `practicas/` | Once prácticas M0–M10 y las tres etapas de la feria | [Prácticas](practicas/README.md) |
+| `proyecto/` | Tetris inicial: ejemplo de una aplicación con interfaz | [Tetris inicial](proyecto/README.md) |
+| `proyecto2/` | Tetris modular: núcleo separado de interfaz y audio | [Tetris modular](proyecto2/README.md) |
+| `tests/` | Comprobaciones del curso y de descubrimiento de prácticas | Comandos de verificación inferiores |
+
+Los dos Tetris son ejemplos independientes, **no** paquetes que deban importarse juntos: ambos usan un paquete llamado `src`. Ejecuta cada uno según su README y usa entornos virtuales separados. No se versionan entornos, cachés, credenciales locales ni el respaldo local del historial Git anterior de `proyecto2/`.
 
 ## Prácticas guiadas por módulo
 
-Consulta el [catálogo de prácticas, archivos y pruebas](practicas/README.md) y la [guía del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html). Cada módulo tiene un artefacto editable, comentarios o marcadores de trabajo, una guía y pruebas docentes de la biblioteca estándar.
+Consulta el [catálogo de prácticas, archivos y pruebas](practicas/README.md) y la [guía del ebook](https://statick88.github.io/Course_of_python/labs/practicas-abp-modulos.html). Cada módulo tiene un artefacto, una guía y pruebas docentes de la biblioteca estándar. Esta entrega completa los artefactos como ejemplos de solución; las guías conservan el contrato para estudiar y reproducir el ejercicio.
 
 - **M0:** completa un plan en Markdown; las pruebas revisan su estructura, no la calidad del razonamiento.
 - **M1–M8:** completa el archivo indicado por la guía del módulo.
@@ -19,11 +31,11 @@ Elige un módulo y ejecuta su comando desde la raíz. Por ejemplo, M1:
 python3 -m unittest discover -s practicas/modulo-01 -p 'test_m01_tarjeta_presentacion.py' -v
 ```
 
-El estado inicial es **FAIL por aserciones** hasta completar la actividad; no se esperan errores de importación, sintaxis ni pruebas omitidas. No instales paquetes. La práctica complementaria [La feria del sabor: tu puesto de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
+Las prácticas se publicaron originalmente como andamios **RED**; esta entrega incorpora las soluciones y sus comprobaciones. Para practicarlas, trabaja en una copia y contrasta tu implementación con las pruebas, sin modificarlas para obtener un resultado favorable. Las prácticas no requieren paquetes externos. La práctica complementaria [La feria del sabor: tu puesto de snacks](practicas/README.md#práctica-abp-puesto-de-snacks-de-la-feria) conserva sus tres archivos y sus 12 pruebas; el catálogo explica cómo seleccionarlas sin incluir otros módulos.
 
 Las prácticas disponibles no cambian las casillas curriculares: una casilla marcada registra contenido previamente visto, no demuestra que se haya completado una actividad nueva.
 
-Las soluciones comentadas están separadas en la [rama `solucion`](https://github.com/statick88/Curso_python_octubre_2026/tree/solucion/practicas). `main` conserva los archivos incompletos para el estudiante.
+La [rama histórica `solucion`](https://github.com/statick88/Curso_python_octubre_2026/tree/solucion/practicas) conserva la entrega anterior de snacks. Ya no es necesario cambiar de rama para estudiar las soluciones de esta entrega.
 
 ## Índice de ejemplos
 
@@ -74,9 +86,39 @@ Las soluciones comentadas están separadas en la [rama `solucion`](https://githu
 | `semana2/palabras_reservadas.py` | `semana2/08_palabras_reservadas.py` |
 | `semana2/helloWorld.py` | `semana2/09_nombres_descriptivos.py` |
 
-## Checklist curricular
+## Correspondencia con el ebook
 
-Una casilla marcada indica que el tema aparece en código activo **antes de este refactor**; no indica dominio. Los ejemplos solo comentados no cuentan como contenido impartido.
+La referencia es [Programación en Python + AI](https://github.com/statick88/course_of_python), específicamente su [índice fuente](https://github.com/statick88/course_of_python/blob/HEAD/_quarto.yml) y las guías de [prácticas M0–M10](https://github.com/statick88/course_of_python/blob/HEAD/labs/practicas-abp-modulos.qmd) y [feria de snacks](https://github.com/statick88/course_of_python/blob/HEAD/labs/practica-abp-feria-snacks.qmd). El ebook es una fuente de consulta: esta revisión no modifica su repositorio.
+
+| Módulos del ebook | Evidencia en este repositorio |
+| --- | --- |
+| M0: pensamiento computacional | FizzBuzz y `practicas/modulo-00/` |
+| M1–M3: introducción, tipos y control | `semana1/`, `semana2/`, prácticas M1–M3 y feria |
+| M4–M6: funciones y colecciones | Ejemplos de semana 2 y prácticas M4–M6 |
+| M7: archivos, CSV, JSON y `pathlib` | Práctica M7 y biblioteca M10 |
+| M8: módulos y paquetes | `semana3/modulos/`, `semana3/modulo2/` y práctica M8 |
+| M9: buenas prácticas y pruebas | Docstrings, manejo de errores, práctica M9 y suites de pruebas |
+| M10: integración | Biblioteca M10 y los miniproyectos Tetris como ejemplos adicionales |
+| POO complementaria | `semana3/` y los dos Tetris |
+
+La correspondencia registra material disponible, no certifica dominio del estudiante ni cobertura total de todos los desafíos del ebook. Tetris es complementario: no se presenta como sustituto de los proyectos específicos del M10. Generadores y decoradores no se añaden artificialmente para marcar casillas.
+
+## Verificación local
+
+Desde la raíz, las comprobaciones de biblioteca estándar son:
+
+```bash
+python3 -m unittest discover -s practicas -p 'test_*.py' -v
+python3 practicas/modulo-07/regression_m07.py -v
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 -m compileall -q semana1 semana2 semana3 practicas proyecto/src proyecto2/src
+```
+
+La suite de Tetris modular usa `pytest`; sigue [su preparación y comandos](proyecto2/README.md). Sus pruebas del núcleo no requieren abrir ventanas. Las pruebas automáticas no sustituyen la comprobación visual de las interfaces ni la escucha de audio en un equipo con las dependencias y recursos correspondientes.
+
+## Checklist curricular histórico
+
+Esta sección conserva el registro de ejemplos impartidos **antes de esta revisión**; las casillas no son el estado de implementación actual ni una evaluación del alumnado. Para el material incorporado consulta la correspondencia anterior. Los ejemplos solo comentados no cuentan como contenido impartido.
 
 ### M0. Pensamiento computacional — Inicial
 
