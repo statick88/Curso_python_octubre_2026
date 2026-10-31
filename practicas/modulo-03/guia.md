@@ -1,5 +1,7 @@
 # M3 · Detectives de números: pares e impares
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Genera un reporte y un conteo sobre intervalos enteros inclusivos.
 
 ## Objetivo y requisitos previos

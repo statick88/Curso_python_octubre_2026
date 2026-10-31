@@ -24,6 +24,7 @@ def _sin_salida(funcion, *argumentos):
 
 class TestM02PresupuestoViaje(unittest.TestCase):
     def test_calcular_costo_ejemplos_y_cero(self):
+        """Verifica ejemplos de costo y límites con cero."""
         for distancia, tarifa, esperado in (
             ("12", "0.35", 4.2),
             ("0", "2.5", 0.0),
@@ -36,6 +37,7 @@ class TestM02PresupuestoViaje(unittest.TestCase):
                 self.assertAlmostEqual(resultado, esperado)
 
     def test_calcular_costo_redondea_a_dos_decimales_y_preserva_textos(self):
+        """Verifica redondeo binario observado y conservación de textos."""
         distancia = "2.675"
         tarifa = "1"
         resultado = _sin_salida(calcular_costo, distancia, tarifa)
@@ -44,6 +46,7 @@ class TestM02PresupuestoViaje(unittest.TestCase):
         self.assertEqual((distancia, tarifa), ("2.675", "1"))
 
     def test_normalizar_destino_ejemplos_y_espacios(self):
+        """Verifica normalización de mayúsculas y espacios exteriores."""
         for destino, esperado in ((" loja ", "Loja"), ("  quITO  ", "Quito")):
             with self.subTest(destino=destino):
                 original = destino
@@ -53,6 +56,7 @@ class TestM02PresupuestoViaje(unittest.TestCase):
                 self.assertEqual(destino, original)
 
     def test_formatear_presupuesto_compone_el_ejemplo_sin_mutar(self):
+        """Verifica composición exacta del presupuesto sin mutar entradas."""
         destino = " loja "
         costo = 4.2
         resultado = _sin_salida(formatear_presupuesto, destino, costo)
@@ -61,6 +65,7 @@ class TestM02PresupuestoViaje(unittest.TestCase):
         self.assertEqual((destino, costo), (" loja ", 4.2))
 
     def test_formatear_presupuesto_respeta_dos_decimales_y_cero(self):
+        """Verifica formato monetario para costos cero y decimales."""
         self.assertEqual(
             _sin_salida(formatear_presupuesto, "quito", 0), "Viaje a Quito: $0.00"
         )

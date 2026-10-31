@@ -1,5 +1,7 @@
 # M0 · Misión excursión: planifica la aventura
 
+> **Estado del repositorio:** `m00_planificador.md` es un ejemplo resuelto para consulta. La actividad original conserva su propósito de planificación y defensa individual; no sustituye una entrega razonada propia.
+
 Planifica una salida escolar antes de programar. El resultado es un documento razonado, no código Python.
 
 ## Objetivo y requisitos previos

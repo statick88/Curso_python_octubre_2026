@@ -24,6 +24,7 @@ def _ejecutar_sin_salida(funcion, *argumentos):
 
 class TestEtapa3Turnos(unittest.TestCase):
     def test_reporte_combina_turnos_atendidos_y_sin_stock(self):
+        """Verifica el reporte mixto de turnos atendidos y sin stock."""
         resultado = _ejecutar_sin_salida(reporte_turnos, 4, 2)
         esperado = (
             "Turno 1: atendido\n"
@@ -34,18 +35,22 @@ class TestEtapa3Turnos(unittest.TestCase):
         self.assertEqual(resultado, esperado)
 
     def test_cero_turnos_devuelve_cadena_vacia(self):
+        """Verifica la cadena vacía cuando no existen turnos."""
         resultado = _ejecutar_sin_salida(reporte_turnos, 0, 5)
         self.assertEqual(resultado, "")
 
     def test_stock_cero_deja_todos_los_turnos_sin_stock(self):
+        """Verifica que sin stock ningún turno se atiende."""
         resultado = _ejecutar_sin_salida(reporte_turnos, 3, 0)
         esperado = "Turno 1: sin stock\nTurno 2: sin stock\nTurno 3: sin stock\n"
         self.assertEqual(resultado, esperado)
 
     def test_stock_exacto_atiende_el_unico_turno(self):
+        """Verifica el límite con una unidad exacta de stock."""
         resultado = _ejecutar_sin_salida(reporte_turnos, 1, 1)
         self.assertEqual(resultado, "Turno 1: atendido\n")
 
     def test_stock_mayor_que_turnos_los_atiende_todos(self):
+        """Verifica que el stock excedente atiende todos los turnos."""
         resultado = _ejecutar_sin_salida(reporte_turnos, 2, 5)
         self.assertEqual(resultado, "Turno 1: atendido\nTurno 2: atendido\n")

@@ -59,6 +59,7 @@ def _elementos_no_vacios(texto):
 
 class TestM00Planificador(unittest.TestCase):
     def setUp(self):
+        """Carga el plan y sus secciones antes de cada comprobación."""
         self.texto = _leer_plan()
         self.secciones = _extraer_secciones(self.texto)
         self.encabezados = tuple(
@@ -66,12 +67,15 @@ class TestM00Planificador(unittest.TestCase):
         )
 
     def test_conserva_los_siete_encabezados_requeridos(self):
+        """Verifica que el documento conserva la estructura solicitada."""
         self.assertCountEqual(self.encabezados, SECCIONES_REQUERIDAS)
 
     def test_no_conserva_marcadores_visibles(self):
+        """Verifica que no quedan marcadores de plantilla visibles."""
         self.assertNotIn(MARCADOR, self.texto)
 
     def test_secciones_y_subproblemas_tienen_contenido(self):
+        """Verifica contenido en secciones y cuatro subproblemas como mínimo."""
         for seccion in SECCIONES_REQUERIDAS:
             if seccion == "Alternativas":
                 continue
@@ -82,6 +86,7 @@ class TestM00Planificador(unittest.TestCase):
         )
 
     def test_alternativas_tiene_dos_opciones_no_vacias(self):
+        """Verifica que se proponen al menos dos alternativas no vacías."""
         self.assertGreaterEqual(
             len(_elementos_no_vacios(self.secciones.get("Alternativas", ""))), 2
         )

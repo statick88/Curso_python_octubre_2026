@@ -1,5 +1,7 @@
 # M1 · ¡Hola, equipo! Tu tarjeta de presentación
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Construye una interacción breve que solicita dos datos y muestra una oración exacta.
 
 ## Objetivo y requisitos previos

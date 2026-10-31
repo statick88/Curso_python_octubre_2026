@@ -24,14 +24,17 @@ def _ejecutar_sin_salida(funcion, *argumentos):
 
 class TestEtapa1Etiqueta(unittest.TestCase):
     def test_formato_del_ejemplo_principal(self):
+        """Verifica el formato exacto del ejemplo principal."""
         resultado = _ejecutar_sin_salida(etiqueta_pedido, "Feria", "Jugo", 3)
         self.assertEqual(resultado, "Feria | 3 x Jugo")
 
     def test_cantidad_cero_se_conserva_en_la_etiqueta(self):
+        """Verifica que la etiqueta conserva una cantidad cero válida."""
         resultado = _ejecutar_sin_salida(etiqueta_pedido, "Patio", "Pan", 0)
         self.assertEqual(resultado, "Patio | 0 x Pan")
 
     def test_datos_se_muestran_tal_como_se_reciben(self):
+        """Verifica que no se normalizan textos válidos recibidos."""
         for evento, producto in (
             ("Feria escolar", "Jugo natural"),
             (" Feria ", " Pan "),

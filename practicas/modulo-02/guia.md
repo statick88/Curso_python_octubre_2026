@@ -1,5 +1,7 @@
 # M2 · Rumbo a la aventura: calcula tu presupuesto
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Transforma datos de texto en un costo y en un mensaje listo para mostrar después.
 
 ## Objetivo y requisitos previos

@@ -1,39 +1,39 @@
 # Misión excursión: planifica la aventura
 
-Completa cada marcador con tu propia planificación. No existe una única solución: el docente revisará la viabilidad, la descomposición y tu justificación durante la defensa oral.
+Ejemplo resuelto de planificación. En la actividad original cada estudiante debe proponer y defender una alternativa propia: este documento solo ilustra una respuesta estructurada.
 
 ## Problema
 
-[COMPLETA: describe qué salida escolar se planificará y qué necesita resolver.]
+Planificar una salida de un día al parque ecológico para 28 estudiantes de secundaria, con transporte, alimentación, seguridad y presupuesto definidos.
 
 ## Entradas
 
-[COMPLETA: enumera los datos que se necesitan antes de planificar.]
+Número de estudiantes y acompañantes, presupuesto disponible por persona, fecha, permisos familiares, opciones de transporte, costos de alimentación y pronóstico del clima.
 
 ## Salidas
 
-[COMPLETA: indica qué información producirá el plan terminado.]
+Itinerario aprobado, costo estimado por participante, lista de responsables, materiales necesarios y plan de contingencia por lluvia.
 
 ## Subproblemas
 
-Escribe al menos cuatro subproblemas como elementos de lista no vacíos:
-
-- [COMPLETA: primer subproblema.]
-- [COMPLETA: segundo subproblema.]
-- [COMPLETA: tercer subproblema.]
-- [COMPLETA: cuarto subproblema.]
+- Confirmar asistentes, permisos y necesidades de accesibilidad antes de reservar servicios.
+- Comparar transporte autorizado según capacidad, costo y horarios de salida y regreso.
+- Calcular alimentación, entradas y fondo de emergencia dentro del presupuesto disponible.
+- Preparar itinerario, responsables de grupos, botiquín y protocolo de contacto.
 
 ## Pseudocódigo
 
-[COMPLETA: propone pasos ordenados; no necesitas escribir Python.]
+1. Reunir permisos, asistentes y presupuesto.
+2. Solicitar cotizaciones de transporte y seleccionar una opción viable.
+3. Sumar costos de transporte, entradas, alimentación y contingencia.
+4. Si el total excede el presupuesto, ajustar alimentación o elegir otra cotización.
+5. Asignar responsables, comunicar el itinerario y confirmar reservas.
 
 ## Alternativas
 
-Escribe al menos dos enfoques como elementos de lista no vacíos:
-
-- [COMPLETA: primera alternativa.]
-- [COMPLETA: segunda alternativa.]
+- Contratar un autobús escolar con horario fijo y costo compartido por todo el grupo.
+- Usar transporte público acompañado, solo si el grupo reducido y los horarios permiten regresar con seguridad.
 
 ## Justificación
 
-[COMPLETA: explica por qué tu alternativa elegida es viable.]
+Se elige el autobús escolar porque permite conservar al grupo unido, reduce cambios de ruta y facilita que los responsables controlen las horas de salida y regreso dentro del presupuesto estimado.

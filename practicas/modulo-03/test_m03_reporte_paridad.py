@@ -20,16 +20,19 @@ def _sin_salida(funcion, *argumentos):
 
 class TestM03ReporteParidad(unittest.TestCase):
     def test_reporte_del_ejemplo_inclusivo(self):
+        """Verifica el reporte inclusivo del ejemplo público."""
         resultado = _sin_salida(reporte_paridad, 2, 3)
         self.assertIsNotNone(resultado)
         self.assertEqual(resultado, "2: par\n3: impar\n")
 
     def test_reporte_acepta_limites_negativos_y_cero(self):
+        """Verifica paridad para límites negativos y cero."""
         resultado = _sin_salida(reporte_paridad, -1, 1)
         self.assertIsNotNone(resultado)
         self.assertEqual(resultado, "-1: impar\n0: par\n1: impar\n")
 
     def test_reporte_de_un_solo_limite_par_e_impar(self):
+        """Verifica intervalos de un único entero par o impar."""
         for numero, esperado in ((0, "0: par\n"), (-3, "-3: impar\n")):
             with self.subTest(numero=numero):
                 resultado = _sin_salida(reporte_paridad, numero, numero)
@@ -37,6 +40,7 @@ class TestM03ReporteParidad(unittest.TestCase):
                 self.assertEqual(resultado, esperado)
 
     def test_contar_pares_en_ejemplo_y_limites(self):
+        """Verifica conteos para ejemplos, negativos y límites unitarios."""
         for inicio, fin, esperado in ((2, 3, 1), (-2, 2, 3), (0, 0, 1), (-3, -3, 0)):
             with self.subTest(inicio=inicio, fin=fin):
                 resultado = _sin_salida(contar_pares, inicio, fin)
@@ -44,6 +48,7 @@ class TestM03ReporteParidad(unittest.TestCase):
                 self.assertEqual(resultado, esperado)
 
     def test_contar_pares_no_omite_el_limite_final(self):
+        """Verifica que el límite final inclusivo participa en el conteo."""
         resultado = _sin_salida(contar_pares, 1, 2)
         self.assertIsNotNone(resultado)
         self.assertEqual(resultado, 1)

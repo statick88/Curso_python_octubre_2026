@@ -24,16 +24,19 @@ def _ejecutar_sin_salida(funcion, *argumentos):
 
 class TestEtapa2Total(unittest.TestCase):
     def test_total_del_ejemplo_principal(self):
+        """Verifica el total del ejemplo principal de la feria."""
         resultado = _ejecutar_sin_salida(calcular_total, 2.5, 3)
         self.assertIsNotNone(resultado)
         self.assertAlmostEqual(resultado, 7.5)
 
     def test_total_multiplica_por_la_cantidad(self):
+        """Verifica que cada unidad participa en el total."""
         resultado = _ejecutar_sin_salida(calcular_total, 4, 3)
         self.assertIsNotNone(resultado)
         self.assertAlmostEqual(resultado, 12.0)
 
     def test_total_se_redondea_a_dos_decimales(self):
+        """Verifica el redondeo del total a dos decimales."""
         for precio in (1.235, 1.237):
             with self.subTest(precio=precio):
                 resultado = _ejecutar_sin_salida(calcular_total, precio, 3)
@@ -41,6 +44,7 @@ class TestEtapa2Total(unittest.TestCase):
                 self.assertAlmostEqual(resultado, 3.71)
 
     def test_ceros_producen_total_cero(self):
+        """Verifica límites de precio o cantidad igual a cero."""
         total_sin_unidades = _ejecutar_sin_salida(calcular_total, 4, 0)
         total_sin_precio = _ejecutar_sin_salida(calcular_total, 0, 8)
         self.assertIsNotNone(total_sin_unidades)
