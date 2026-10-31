@@ -12,9 +12,11 @@ from m10_biblioteca import cargar_lecturas, guardar_reporte, resumir_por_estado
 
 class TestM10Biblioteca(unittest.TestCase):
     def escribir_json(self, ruta, valor):
+        """Crea un fixture JSON UTF-8 con el valor proporcionado."""
         ruta.write_text(json.dumps(valor, ensure_ascii=False), encoding="utf-8")
 
     def llamar_sin_salida(self, funcion, *args):
+        """Ejecuta una función y exige que no escriba en ninguna salida."""
         salida, errores = io.StringIO(), io.StringIO()
         with redirect_stdout(salida), redirect_stderr(errores):
             resultado = funcion(*args)
@@ -23,6 +25,7 @@ class TestM10Biblioteca(unittest.TestCase):
         return resultado
 
     def test_carga_registros_validos_preserva_orden_y_bytes(self):
+        """Verifica carga ordenada sin alterar los bytes del origen."""
         with tempfile.TemporaryDirectory() as temporal:
             ruta = Path(temporal) / "lecturas.json"
             esperado = [
@@ -35,6 +38,7 @@ class TestM10Biblioteca(unittest.TestCase):
             self.assertEqual(ruta.read_bytes(), original)
 
     def test_lectura_ausente_y_json_o_esquema_invalido_no_emiten_salida(self):
+        """Verifica errores silenciosos para rutas, JSON y esquemas inválidos."""
         with tempfile.TemporaryDirectory() as temporal:
             base = Path(temporal)
             salida, errores = io.StringIO(), io.StringIO()
@@ -74,6 +78,7 @@ class TestM10Biblioteca(unittest.TestCase):
                 self.assertEqual(ruta.read_bytes(), original)
 
     def test_resume_ambos_estados_sin_mutar_entrada_ni_emitir_salida(self):
+        """Verifica conteos completos sin mutar lecturas ni imprimir."""
         items = [
             {"titulo": "A", "estado": "pendiente"},
             {"titulo": "B", "estado": "leido"},
@@ -91,6 +96,7 @@ class TestM10Biblioteca(unittest.TestCase):
         )
 
     def test_guarda_reporte_nuevo_no_muta_resumen_y_rechaza_sobrescritura(self):
+        """Verifica creación nueva y rechazo de sobrescritura sin mutación."""
         with tempfile.TemporaryDirectory() as temporal:
             ruta = Path(temporal) / "reporte.json"
             resumen = {"pendiente": 1, "leido": 2}
@@ -115,6 +121,7 @@ class TestM10Biblioteca(unittest.TestCase):
             self.assertEqual(resumen, copia)
 
     def test_pipeline_independiente_usa_archivos_temporales_sin_salida(self):
+        """Verifica el pipeline cargar, resumir y guardar en aislamiento."""
         with tempfile.TemporaryDirectory() as temporal:
             base = Path(temporal)
             origen, reporte = base / "lecturas.json", base / "reporte.json"

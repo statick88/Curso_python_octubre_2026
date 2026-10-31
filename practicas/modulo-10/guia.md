@@ -1,5 +1,7 @@
 # M10 · Pasaporte lector: organiza tu biblioteca
 
+> **Estado del repositorio:** el archivo de trabajo contiene un ejemplo resuelto verificable. La guía describe el andamiaje original que cada estudiante completa en su propia copia.
+
 Construye un proyecto independiente que carga, resume y guarda un registro JSON sintético.
 
 ## Objetivo y requisito
